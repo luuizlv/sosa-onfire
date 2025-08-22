@@ -6,7 +6,7 @@ export interface Bet {
   stake: string;
   payout: string;
   profit: string;
-  betType: 'surebet' | 'giros' | 'superodd' | 'dnc' | 'gastos' | 'bingos' | 'extracao';
+  betType: 'surebet' | 'giros' | 'superodd' | 'dnc' | 'gastos' | 'bingos' | 'extracao' | 'vicio';
   status: BetStatus;
   house?: string | null;
   description?: string | null;
@@ -47,6 +47,7 @@ export const BET_TYPES = {
   gastos: 'Gastos',
   bingos: 'Bingos',
   extracao: 'Extração de FB',
+  vicio: 'Vício',
 } as const;
 
 export type BetTypeKey = keyof typeof BET_TYPES;

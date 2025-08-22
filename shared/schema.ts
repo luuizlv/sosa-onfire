@@ -10,7 +10,8 @@ export const betTypeEnum = pgEnum('bet_type', [
   'dnc',
   'gastos',
   'bingos',
-  'extracao'
+  'extracao',
+  'vicio'
 ]);
 
 // Define the bet status enum
@@ -66,7 +67,7 @@ export const insertBetSchema = createInsertSchema(bets).omit({
 }).extend({
   stake: z.string().min(1, "Valor da aposta é obrigatório"),
   payout: z.string().min(1, "Valor do retorno é obrigatório"),
-  betType: z.enum(['surebet', 'giros', 'superodd', 'dnc', 'gastos', 'bingos', 'extracao']),
+  betType: z.enum(['surebet', 'giros', 'superodd', 'dnc', 'gastos', 'bingos', 'extracao', 'vicio']),
   placedAt: z.string().min(1, "Data da aposta é obrigatória"),
 });
 

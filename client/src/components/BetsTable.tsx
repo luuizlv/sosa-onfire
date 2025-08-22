@@ -23,6 +23,7 @@ const getBetTypeColor = (betType: string) => {
     gastos: '#800080',         // Purple
     bingos: '#DAA520',         // Goldenrod
     extracao: '#CD853F',       // Peru
+    vicio: '#FF4500',          // Orange red for addiction awareness
   };
   return colors[betType as keyof typeof colors] || '#6B7280';
 };

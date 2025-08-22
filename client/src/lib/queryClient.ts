@@ -92,11 +92,24 @@ export const queryClient = new QueryClient({
       queryFn: getQueryFn({ on401: "throw" }),
       refetchInterval: false,
       refetchOnWindowFocus: false,
-      staleTime: Infinity,
-      retry: false,
+      staleTime: 1000 * 60 * 5, // 5 minutes - more reasonable than Infinity
+      retry: (failureCount, error) => {
+        // Don't retry on 4xx errors except 408, 429, and network errors
+        if (error?.message?.includes('4')) {
+          const status = parseInt(error.message.split(':')[0]);
+          return status === 408 || status === 429;
+        }
+        return failureCount < 2;
+      },
     },
     mutations: {
-      retry: false,
+      retry: (failureCount, error) => {
+        // Only retry network errors and 5xx errors
+        if (error?.message?.includes('5') || error?.message?.includes('Network')) {
+          return failureCount < 1;
+        }
+        return false;
+      },
     },
   },
 });
