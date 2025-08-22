@@ -1,0 +1,24 @@
+FORMATO CORRETO DA DATABASE_URL PARA SUPABASE:
+
+Sua DATABASE_URL deve seguir EXATAMENTE este formato:
+
+postgresql://postgres.PROJECT_REF:PASSWORD@aws-0-us-east-1.pooler.supabase.com:6543/postgres
+
+Onde substituir:
+- PROJECT_REF: Referência do seu projeto (encontre no painel Supabase)
+- PASSWORD: Sua senha do banco de dados
+
+EXEMPLO REAL:
+postgresql://postgres.abcdefghijklmnop:SuaSenhaAqui123@aws-0-us-east-1.pooler.supabase.com:6543/postgres
+
+COMO ENCONTRAR SUA URL:
+1. Acesse seu projeto no Supabase
+2. Vá em Settings > Database
+3. Na seção "Connection string" > "URI"
+4. Copie a URL e substitua [YOUR-PASSWORD] pela sua senha real
+
+IMPORTANTE:
+- Use a CONNECTION POOLER URL (porta 6543)
+- NÃO use a URL de conexão direta (porta 5432)
+- Substitua [YOUR-PASSWORD] pela senha real
+- Certifique-se que não há espaços extras

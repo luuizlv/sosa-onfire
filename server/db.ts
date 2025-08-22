@@ -11,6 +11,15 @@ if (!connectionString) {
   throw new Error("DATABASE_URL environment variable is required for Supabase connection");
 }
 
+// Log URL for debugging (hide password)
+const debugUrl = connectionString.replace(/:([^:@]{1,}@)/, ':****@');
+console.log("Connecting to database:", debugUrl);
+
+// Validate URL format
+if (!connectionString.startsWith('postgresql://') && !connectionString.startsWith('postgres://')) {
+  throw new Error("DATABASE_URL must be a valid PostgreSQL connection string starting with postgresql:// or postgres://");
+}
+
 // Create PostgreSQL pool for Supabase
 const pool = new Pool({ 
   connectionString: connectionString!,

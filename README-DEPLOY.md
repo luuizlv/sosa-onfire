@@ -1,46 +1,51 @@
-# 🚀 Deploy no Render - App de Apostas (CORRIGIDO)
+# 🚀 SOLUÇÃO PARA ERRO DE CONEXÃO NO RENDER
 
-## ⚠️ PROBLEMA RESOLVIDO
-O erro de enum "vicio" foi corrigido! Use a SQL atualizada incluída neste pacote.
+## ❌ PROBLEMA IDENTIFICADO
+Erro: `getaddrinfo ENOTFOUND base` = DATABASE_URL configurada incorretamente
 
-## ✅ Passos para Deploy
+## ✅ SOLUÇÃO
 
-### 1. EXECUTE A SQL CORRIGIDA NO SUPABASE
-**IMPORTANTE:** Use o arquivo `supabase-schema-fix.sql` (não o antigo)
+### 1. CONFIGURE A DATABASE_URL CORRETAMENTE
 
-1. Abra o SQL Editor no seu projeto Supabase
-2. Copie e cole TODO o conteúdo de `supabase-schema-fix.sql`
-3. Execute TUDO de uma vez
-4. Verifique se não há erros
+**PASSO A PASSO NO SUPABASE:**
+1. Acesse seu projeto Supabase
+2. Vá em `Settings` > `Database`
+3. Na seção `Connection string` clique em `URI`
+4. COPIE a URL completa (algo como):
+   ```
+   postgresql://postgres.abcdefg:senha123@aws-0-us-east-1.pooler.supabase.com:6543/postgres
+   ```
+5. Substitua `[YOUR-PASSWORD]` pela sua senha REAL
 
-### 2. Configure Variáveis no Render
-No painel do Render, adicione estas variáveis de ambiente:
+### 2. CONFIGURE NO RENDER
+No painel do Render, adicione estas variáveis EXATAS:
 
-- `DATABASE_URL` - URL completa do PostgreSQL do Supabase
-- `SUPABASE_URL` - URL do projeto Supabase  
-- `SUPABASE_ANON_KEY` - Chave anônima do Supabase
-- `NODE_ENV` - production
+```
+DATABASE_URL=postgresql://postgres.SEU_REF:SUA_SENHA@aws-0-us-east-1.pooler.supabase.com:6543/postgres
+SUPABASE_URL=https://SEU_REF.supabase.co
+SUPABASE_ANON_KEY=SUA_CHAVE_AQUI
+NODE_ENV=production
+```
 
-### 3. Configurações do Deploy
+### 3. EXECUTE A SQL NO SUPABASE
+Use o arquivo `supabase-schema-fix.sql` no SQL Editor do Supabase
+
+### 4. DEPLOY NO RENDER
 - **Build Command:** `npm install`
 - **Start Command:** `npm run dev`
-- **Environment:** Node.js
-- **Port:** 5000 (configurado automaticamente)
 
-## 🔧 O que foi corrigido:
-- ✅ ENUMs são criados corretamente
-- ✅ Valor "vicio" incluído no bet_type
-- ✅ Tabelas são recriadas se necessário
-- ✅ Políticas RLS configuradas adequadamente
+## 🔧 LOGS DE DEBUG
+O app agora mostra a URL de conexão (sem senha) nos logs para debug.
 
-## 📝 Verificação
-Após executar a SQL, rode este comando no SQL Editor para verificar:
-```sql
-SELECT enumlabel FROM pg_enum WHERE enumtypid = 'bet_type'::regtype ORDER BY enumsortorder;
+## ⚠️ ERROS COMUNS
+- ❌ Usar URL de conexão direta (porta 5432)
+- ❌ Esquecer de substituir [YOUR-PASSWORD]
+- ❌ Adicionar espaços extras na URL
+- ❌ Usar HTTP em vez de HTTPS nas URLs do Supabase
+
+## ✅ VERIFICAÇÃO
+Após configurar, o log deve mostrar:
 ```
-Deve retornar: surebet, giros, superodd, dnc, gastos, bingos, extracao, vicio
-
-## 🐛 Se ainda houver problemas:
-1. Verifique se TODA a SQL foi executada
-2. Confirme que todas as variáveis estão no Render
-3. Tente redeployar o projeto no Render
+Connecting to database: postgresql://postgres.***:****@aws-0-us-east-1.pooler.supabase.com:6543/postgres
+Database connected successfully to Supabase
+```
