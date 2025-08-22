@@ -38,7 +38,7 @@ export const bets = pgTable('bets', {
   stake: decimal('stake', { precision: 12, scale: 2 }).notNull(),
   payout: decimal('payout', { precision: 12, scale: 2 }).notNull(),
   betType: betTypeEnum('bet_type').notNull(),
-  status: betStatusEnum('status').default('completed').notNull(),
+  status: betStatusEnum('status').default('pending').notNull(),
   house: varchar('house', { length: 100 }),
   description: text('description'),
   placedAt: timestamp('placed_at').notNull(),

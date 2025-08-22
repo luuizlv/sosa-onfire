@@ -173,8 +173,8 @@ export class DatabaseStorage implements IStorage {
 
     const [stats] = await db.select({
       totalStake: sql<number>`COALESCE(SUM(${bets.stake}::numeric), 0)`,
-      totalPayout: sql<number>`COALESCE(SUM(${bets.payout}::numeric), 0)`,
-      totalProfit: sql<number>`COALESCE(SUM((${bets.payout} - ${bets.stake})::numeric), 0)`,
+      totalPayout: sql<number>`COALESCE(SUM(CASE WHEN ${bets.status} = 'completed' THEN ${bets.payout}::numeric ELSE 0 END), 0)`,
+      totalProfit: sql<number>`COALESCE(SUM(CASE WHEN ${bets.status} = 'completed' THEN (${bets.payout} - ${bets.stake})::numeric WHEN ${bets.status} = 'lost' THEN -${bets.stake}::numeric ELSE 0 END), 0)`,
       totalBets: sql<number>`COUNT(*)`,
     }).from(bets).where(and(...conditions));
     
@@ -195,9 +195,9 @@ export class DatabaseStorage implements IStorage {
       if (dateFormat === 'YYYY-MM-DD') {
         profitByDate = await db.select({
           date: sql<string>`TO_CHAR(${bets.placedAt} AT TIME ZONE 'America/Sao_Paulo', 'YYYY-MM-DD')`,
-          profit: sql<number>`COALESCE(SUM((${bets.payout} - ${bets.stake})::numeric), 0)`,
+          profit: sql<number>`COALESCE(SUM(CASE WHEN ${bets.status} = 'completed' THEN (${bets.payout} - ${bets.stake})::numeric WHEN ${bets.status} = 'lost' THEN -${bets.stake}::numeric ELSE 0 END), 0)`,
           stake: sql<number>`COALESCE(SUM(${bets.stake}::numeric), 0)`,
-          payout: sql<number>`COALESCE(SUM(${bets.payout}::numeric), 0)`,
+          payout: sql<number>`COALESCE(SUM(CASE WHEN ${bets.status} = 'completed' THEN ${bets.payout}::numeric ELSE 0 END), 0)`,
         })
         .from(bets)
         .where(and(...conditions))
@@ -206,9 +206,9 @@ export class DatabaseStorage implements IStorage {
       } else if (dateFormat === 'YYYY-MM') {
         profitByDate = await db.select({
           date: sql<string>`TO_CHAR(${bets.placedAt} AT TIME ZONE 'America/Sao_Paulo', 'YYYY-MM')`,
-          profit: sql<number>`COALESCE(SUM((${bets.payout} - ${bets.stake})::numeric), 0)`,
+          profit: sql<number>`COALESCE(SUM(CASE WHEN ${bets.status} = 'completed' THEN (${bets.payout} - ${bets.stake})::numeric WHEN ${bets.status} = 'lost' THEN -${bets.stake}::numeric ELSE 0 END), 0)`,
           stake: sql<number>`COALESCE(SUM(${bets.stake}::numeric), 0)`,
-          payout: sql<number>`COALESCE(SUM(${bets.payout}::numeric), 0)`,
+          payout: sql<number>`COALESCE(SUM(CASE WHEN ${bets.status} = 'completed' THEN ${bets.payout}::numeric ELSE 0 END), 0)`,
         })
         .from(bets)
         .where(and(...conditions))
@@ -217,9 +217,9 @@ export class DatabaseStorage implements IStorage {
       } else {
         profitByDate = await db.select({
           date: sql<string>`TO_CHAR(${bets.placedAt} AT TIME ZONE 'America/Sao_Paulo', 'YYYY')`,
-          profit: sql<number>`COALESCE(SUM((${bets.payout} - ${bets.stake})::numeric), 0)`,
+          profit: sql<number>`COALESCE(SUM(CASE WHEN ${bets.status} = 'completed' THEN (${bets.payout} - ${bets.stake})::numeric WHEN ${bets.status} = 'lost' THEN -${bets.stake}::numeric ELSE 0 END), 0)`,
           stake: sql<number>`COALESCE(SUM(${bets.stake}::numeric), 0)`,
-          payout: sql<number>`COALESCE(SUM(${bets.payout}::numeric), 0)`,
+          payout: sql<number>`COALESCE(SUM(CASE WHEN ${bets.status} = 'completed' THEN ${bets.payout}::numeric ELSE 0 END), 0)`,
         })
         .from(bets)
         .where(and(...conditions))

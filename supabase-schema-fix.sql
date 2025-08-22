@@ -51,7 +51,7 @@ CREATE TABLE bets (
     stake DECIMAL(12, 2) NOT NULL,
     payout DECIMAL(12, 2) NOT NULL,
     bet_type bet_type NOT NULL,
-    status bet_status DEFAULT 'completed' NOT NULL,
+    status bet_status DEFAULT 'pending' NOT NULL,
     house VARCHAR(100),
     description TEXT,
     placed_at TIMESTAMP WITH TIME ZONE NOT NULL,

@@ -1,24 +1,23 @@
-# 🚀 SOLUÇÃO PARA ERRO DE CONEXÃO NO RENDER
+# 🎯 SISTEMA DE APOSTAS CORRIGIDO - DEPLOY RENDER
 
-## ❌ PROBLEMA IDENTIFICADO
-Erro: `getaddrinfo ENOTFOUND base` = DATABASE_URL configurada incorretamente
+## ✅ PROBLEMAS RESOLVIDOS
 
-## ✅ SOLUÇÃO
+### 1. ❌ Apostas vinham como "GANHA" automaticamente
+✅ **CORRIGIDO**: Agora vêm como "PENDENTE" por padrão
 
-### 1. CONFIGURE A DATABASE_URL CORRETAMENTE
+### 2. ❌ Lucro contava apostas pendentes
+✅ **CORRIGIDO**: Lucro conta apenas:
+- ➕ Apostas GANHAS: soma (payout - stake)
+- ➖ Apostas PERDIDAS: subtrai stake
+- ⏳ Apostas PENDENTES: não conta no lucro
 
-**PASSO A PASSO NO SUPABASE:**
-1. Acesse seu projeto Supabase
-2. Vá em `Settings` > `Database`
-3. Na seção `Connection string` clique em `URI`
-4. COPIE a URL completa (algo como):
-   ```
-   postgresql://postgres.abcdefg:senha123@aws-0-us-east-1.pooler.supabase.com:6543/postgres
-   ```
-5. Substitua `[YOUR-PASSWORD]` pela sua senha REAL
+### 3. ❌ Lucro estático (não atualizava)
+✅ **CORRIGIDO**: Lucro atualiza automaticamente quando muda status
 
-### 2. CONFIGURE NO RENDER
-No painel do Render, adicione estas variáveis EXATAS:
+## 🚀 DEPLOY NO RENDER
+
+### 1. CONFIGURE DATABASE_URL CORRETA
+No painel do Render, configure EXATAMENTE:
 
 ```
 DATABASE_URL=postgresql://postgres.SEU_REF:SUA_SENHA@aws-0-us-east-1.pooler.supabase.com:6543/postgres
@@ -27,25 +26,28 @@ SUPABASE_ANON_KEY=SUA_CHAVE_AQUI
 NODE_ENV=production
 ```
 
-### 3. EXECUTE A SQL NO SUPABASE
-Use o arquivo `supabase-schema-fix.sql` no SQL Editor do Supabase
+### 2. EXECUTE SQL NO SUPABASE
+Use o arquivo `supabase-schema-fix.sql` no SQL Editor
 
-### 4. DEPLOY NO RENDER
+### 3. CONFIGURAÇÕES DEPLOY
 - **Build Command:** `npm install`
 - **Start Command:** `npm run dev`
 
-## 🔧 LOGS DE DEBUG
-O app agora mostra a URL de conexão (sem senha) nos logs para debug.
+## 📊 COMO FUNCIONA AGORA
 
-## ⚠️ ERROS COMUNS
-- ❌ Usar URL de conexão direta (porta 5432)
-- ❌ Esquecer de substituir [YOUR-PASSWORD]
-- ❌ Adicionar espaços extras na URL
-- ❌ Usar HTTP em vez de HTTPS nas URLs do Supabase
+### Status das Apostas:
+- **PENDENTE** 🟡: Não conta no lucro
+- **GANHA** 🟢: Soma no lucro (payout - stake)
+- **PERDIDA** 🔴: Subtrai do lucro (stake)
+
+### Cálculos:
+- **Total Apostado**: TODAS as apostas
+- **Total Recebido**: Apenas apostas GANHAS
+- **Lucro**: Ganhas - Perdidas (pendentes = 0)
 
 ## ✅ VERIFICAÇÃO
-Após configurar, o log deve mostrar:
-```
-Connecting to database: postgresql://postgres.***:****@aws-0-us-east-1.pooler.supabase.com:6543/postgres
-Database connected successfully to Supabase
-```
+Após deploy, teste:
+1. Criar aposta → deve vir PENDENTE
+2. Marcar como GANHA → lucro aumenta
+3. Marcar como PERDIDA → lucro diminui
+4. Voltar para PENDENTE → lucro ajusta
