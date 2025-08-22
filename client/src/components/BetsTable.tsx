@@ -618,7 +618,7 @@ export default function BetsTable({ filters }: BetsTableProps) {
                     .filter(bet => bet.status === 'completed' || bet.status === 'lost')
                     .reduce((total, bet) => {
                       const profit = bet.status === 'completed' 
-                        ? parseFloat(bet.profit) 
+                        ? (parseFloat(bet.payout) - parseFloat(bet.stake))
                         : -parseFloat(bet.stake);
                       return total + profit;
                     }, 0);
@@ -630,7 +630,7 @@ export default function BetsTable({ filters }: BetsTableProps) {
                     .filter(bet => bet.status === 'completed' || bet.status === 'lost')
                     .reduce((total, bet) => {
                       const profit = bet.status === 'completed' 
-                        ? parseFloat(bet.profit) 
+                        ? (parseFloat(bet.payout) - parseFloat(bet.stake))
                         : -parseFloat(bet.stake);
                       return total + profit;
                     }, 0)

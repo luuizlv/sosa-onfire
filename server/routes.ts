@@ -8,11 +8,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
   setupSupabaseAuth(app);
 
-  // Get all bets for a user
+  // Get all bets for a user with filters
   app.get("/api/bets", isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.id;
-      const bets = await storage.getBets(userId);
+      const { betType, house, startDate, endDate, period, month, year } = req.query;
+      
+      const filters = {
+        betType: betType || undefined,
+        house: house || undefined,
+        startDate: startDate || undefined,
+        endDate: endDate || undefined,
+        period: period || undefined,
+        month: month || undefined,
+        year: year || undefined,
+      };
+
+      const bets = await storage.getBets(userId, filters);
       res.json(bets);
     } catch (error) {
       console.error("Error fetching bets:", error);

@@ -94,7 +94,23 @@ export class DatabaseStorage implements IStorage {
       conditions.push(eq(bets.house, filters.house));
     }
 
-    if (filters?.startDate && filters?.endDate) {
+    // Handle month filter first (most specific)
+    if (filters?.month) {
+      const [year, monthNum] = filters.month.split('-');
+      const startDate = new Date(parseInt(year), parseInt(monthNum) - 1, 1);
+      const endDate = new Date(parseInt(year), parseInt(monthNum), 0, 23, 59, 59, 999);
+      conditions.push(between(bets.placedAt, startDate, endDate));
+    } else if (filters?.period === 'daily') {
+      // For daily period, use Brazil timezone to filter only today's bets
+      const nowInBrazil = new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' });
+      const today = new Date(nowInBrazil);
+      const todayStart = new Date(today);
+      todayStart.setHours(0, 0, 0, 0);
+      const todayEnd = new Date(today);
+      todayEnd.setHours(23, 59, 59, 999);
+      
+      conditions.push(between(bets.placedAt, todayStart, todayEnd));
+    } else if (filters?.startDate && filters?.endDate) {
       conditions.push(between(bets.placedAt, new Date(filters.startDate), new Date(filters.endDate)));
     } else if (filters?.startDate) {
       conditions.push(gte(bets.placedAt, new Date(filters.startDate)));
