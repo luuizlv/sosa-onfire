@@ -20,6 +20,7 @@ interface BetFormData {
   house: string;
   description: string;
   placedAt: string;
+  status?: 'pending' | 'completed' | 'lost';
 }
 
 export default function AddBetForm() {
@@ -30,6 +31,7 @@ export default function AddBetForm() {
     house: '',
     description: '',
     placedAt: getTodayInBrazil(),
+    status: 'pending',
   });
   
   const { toast } = useToast();
@@ -45,6 +47,7 @@ export default function AddBetForm() {
         house: data.house || null,
         description: data.description || null,
         placedAt: data.placedAt,
+        status: 'pending',
       });
     },
     onSuccess: () => {
@@ -65,6 +68,7 @@ export default function AddBetForm() {
         house: '',
         description: '',
         placedAt: getTodayInBrazil(),
+        status: 'pending',
       });
       // Invalidate all bet-related queries to refresh data
       queryClient.invalidateQueries({ predicate: (query) => query.queryKey[0] === '/api/bets' });
@@ -114,6 +118,7 @@ export default function AddBetForm() {
       house: '',
       description: '',
       placedAt: getTodayInBrazil(),
+      status: 'pending',
     });
   };
 

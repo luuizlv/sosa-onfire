@@ -38,7 +38,8 @@ CREATE TYPE bet_status AS ENUM (
 CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     email VARCHAR(255) UNIQUE,
-    username VARCHAR(100),
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
     profile_image_url TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
@@ -102,15 +103,17 @@ CREATE POLICY "Users can view own bets" ON bets
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO public.users (id, email, username)
+    INSERT INTO public.users (id, email, first_name, last_name)
     VALUES (
         NEW.id,
         NEW.email,
-        COALESCE(NEW.raw_user_meta_data->>'username', split_part(NEW.email, '@', 1))
+        COALESCE(NEW.raw_user_meta_data->>'firstName', split_part(NEW.email, '@', 1)),
+        COALESCE(NEW.raw_user_meta_data->>'lastName', '')
     )
     ON CONFLICT (id) DO UPDATE SET
         email = EXCLUDED.email,
-        username = COALESCE(EXCLUDED.username, users.username),
+        first_name = COALESCE(EXCLUDED.first_name, users.first_name),
+        last_name = COALESCE(EXCLUDED.last_name, users.last_name),
         updated_at = NOW();
     RETURN NEW;
 END;

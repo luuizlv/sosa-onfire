@@ -25,7 +25,8 @@ export const betStatusEnum = pgEnum('bet_status', [
 export const users = pgTable('users', {
   id: uuid('id').primaryKey(), // Supabase Auth UUID
   email: varchar('email', { length: 255 }).unique(),
-  username: varchar('username', { length: 100 }),
+  firstName: varchar('first_name', { length: 100 }),
+  lastName: varchar('last_name', { length: 100 }),
   profileImageUrl: text('profile_image_url'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),

@@ -130,6 +130,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         stake: stake,
         payout: payout,
         betType: betType,
+        status: 'pending' as const, // Force pending status
         house: house || null,
         description: description || null,
         placedAt: placedAt,
