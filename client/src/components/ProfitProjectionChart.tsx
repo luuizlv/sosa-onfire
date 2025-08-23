@@ -175,9 +175,9 @@ export default function ProfitProjectionChart({ filters }: ProfitProjectionChart
           </div>
         </div>
 
-        {dailyAverage !== 0 ? (
+        {(dailyAverage !== 0 || stats?.profitByDate?.length) ? (
           <>
-            {/* Current Projection Highlight */}
+            {/* Current Projection Highlight - Always show, even when negative */}
             <div className={`mb-6 p-6 rounded-xl border-2 bg-gradient-to-r ${
               currentProjection.value >= 0 
                 ? 'from-green-500/10 to-emerald-500/5 border-green-500/30' 
@@ -188,10 +188,11 @@ export default function ProfitProjectionChart({ filters }: ProfitProjectionChart
                 <div className={`text-3xl font-bold mb-1 ${
                   currentProjection.value >= 0 ? 'text-green-400' : 'text-red-400'
                 }`}>
-                  {formatCurrency(Math.abs(currentProjection.value))}
+                  {currentProjection.value >= 0 ? '' : '-'}{formatCurrency(Math.abs(currentProjection.value))}
                 </div>
                 <div className="text-sm text-zinc-500">
                   {currentProjection.days} dias • {projectionMode === 'mensal' ? 'Evolução diária' : projectionMode === 'anual' ? 'Evolução mensal' : 'Evolução mensal'}
+                  {currentProjection.value < 0 && <span className="text-red-400 ml-2">⚠️ Caminho negativo</span>}
                 </div>
               </div>
             </div>

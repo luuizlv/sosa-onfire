@@ -613,19 +613,6 @@ function BetsTable({ filters }: BetsTableProps) {
     
     return (
       <Card className="border overflow-hidden bg-card-oled border-oled">
-        <div className="p-6 border-b border-oled">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-lg font-semibold text-gold">
-                Apostas Recentes
-              </h3>
-              <p className="text-sm text-oled-secondary">
-                {todaysBets.length > 0 ? 'nas últimas 24h' : 'Nenhuma aposta nas últimas 24h'}
-              </p>
-            </div>
-          </div>
-        </div>
-
         {todaysBets.length > 0 ? (
           <div className="border border-oled rounded-lg overflow-hidden">
             <div className="px-6 py-4 border-b border-oled flex justify-between items-center bg-gradient-to-r from-gold/10 to-wine/10 border-wine/20">

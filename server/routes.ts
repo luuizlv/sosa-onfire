@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { setupSupabaseAuth, isAuthenticated, supabase } from "./supabaseAuth";
+import { setupSupabaseAuth, isAuthenticated, supabase, supabaseAdmin } from "./supabaseAuth";
 import { storage, createBrazilDate } from "./storage";
 
 
@@ -206,23 +206,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const base64Data = fileBase64.replace(/^data:image\/[a-z]+;base64,/, '');
       const fileBuffer = Buffer.from(base64Data, 'base64');
 
-      // Check if bucket exists, create if not
-      const { data: buckets } = await supabase.storage.listBuckets();
+      // Check if bucket exists, create if not using admin client
+      const { data: buckets } = await supabaseAdmin.storage.listBuckets();
       const bucketExists = buckets?.some(bucket => bucket.name === 'profile-images');
       
       if (!bucketExists) {
-        const { error: bucketError } = await supabase.storage.createBucket('profile-images', {
-          public: true
+        console.log('Creating profile-images bucket...');
+        const { error: bucketError } = await supabaseAdmin.storage.createBucket('profile-images', {
+          public: true,
+          allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+          fileSizeLimit: 1048576 // 1MB
         });
         if (bucketError) {
           console.error("Error creating bucket:", bucketError);
+          // Continue anyway - bucket might exist but not be listed
+        } else {
+          console.log('Bucket created successfully');
         }
       }
 
-      // Upload to Supabase Storage
+      // Upload to Supabase Storage using admin client
       const filePath = `${userId}/${Date.now()}-${fileName}`;
       
-      const { data: uploadData, error: uploadError } = await supabase.storage
+      const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
         .from('profile-images')
         .upload(filePath, fileBuffer, {
           contentType: 'image/jpeg',
@@ -234,8 +240,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(500).json({ message: "Failed to upload image to storage" });
       }
 
-      // Get public URL
-      const { data: urlData } = supabase.storage
+      // Get public URL using admin client
+      const { data: urlData } = supabaseAdmin.storage
         .from('profile-images')
         .getPublicUrl(filePath);
 

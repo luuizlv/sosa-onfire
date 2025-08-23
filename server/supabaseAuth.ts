@@ -12,7 +12,19 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 );
 
-export { supabase };
+// Administrative Supabase client for storage operations
+const supabaseAdmin = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY,
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false
+    }
+  }
+);
+
+export { supabase, supabaseAdmin };
 
 // Middleware to validate JWT tokens from Supabase
 export const isAuthenticated: RequestHandler = async (req: any, res, next) => {

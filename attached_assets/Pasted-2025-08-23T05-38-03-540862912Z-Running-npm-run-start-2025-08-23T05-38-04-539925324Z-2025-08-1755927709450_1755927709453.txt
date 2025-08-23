@@ -1,0 +1,201 @@
+2025-08-23T05:38:03.540862912Z ==> Running 'npm run start'
+2025-08-23T05:38:04.539925324Z 
+2025-08-23T05:38:04.539948524Z > rest-express@1.0.0 start
+2025-08-23T05:38:04.539954064Z > NODE_ENV=production node dist/index.js
+2025-08-23T05:38:04.539957944Z 
+2025-08-23T05:38:11.193688284Z ==> Deploying...
+2025-08-23T05:38:10.641389579Z Connecting to database: postgresql://postgres.pjckjjzcvfrqywezwdkt:****@aws-1-sa-east-1.pooler.supabase.com:6543/postgres
+2025-08-23T05:38:10.64258631Z Database connected successfully to Supabase
+2025-08-23T05:38:10.84161342Z 5:38:10 AM [express] serving on port 10000
+2025-08-23T05:38:31.19786493Z ==> Running 'npm run start'
+2025-08-23T05:38:32.201642679Z 
+2025-08-23T05:38:32.201671499Z > rest-express@1.0.0 start
+2025-08-23T05:38:32.20167726Z > NODE_ENV=production node dist/index.js
+2025-08-23T05:38:32.20167967Z 
+2025-08-23T05:38:38.392365209Z Connecting to database: postgresql://postgres.pjckjjzcvfrqywezwdkt:****@aws-1-sa-east-1.pooler.supabase.com:6543/postgres
+2025-08-23T05:38:38.393940991Z Database connected successfully to Supabase
+2025-08-23T05:38:38.695883734Z 5:38:38 AM [express] serving on port 10000
+2025-08-23T05:38:42.002285777Z ==> Your service is live 🎉
+2025-08-23T05:38:42.085410626Z ==> 
+2025-08-23T05:38:42.167958215Z ==> ///////////////////////////////////////////////////////////
+2025-08-23T05:38:42.248168754Z ==> 
+2025-08-23T05:38:42.331186203Z ==> Available at your primary URL https://sosaaaa.onrender.com
+2025-08-23T05:38:42.410984832Z ==> 
+2025-08-23T05:38:42.490805812Z ==> ///////////////////////////////////////////////////////////
+2025-08-23T05:38:50.908068334Z 5:38:50 AM [express] GET /api/auth/user 304 in 1896ms :: {"id":"12b8ab31-4487-469e-946d-87ac260d348a…
+2025-08-23T05:38:51.790363955Z 5:38:51 AM [express] GET /api/bets/stats 304 in 673ms :: {"totalStake":"55.00","totalPayout":"0.00",…
+2025-08-23T05:38:52.355158075Z 5:38:52 AM [express] GET /api/bets/months 304 in 1235ms :: ["2025-08"]
+2025-08-23T05:38:52.400653859Z 5:38:52 AM [express] GET /api/bets/years 304 in 1234ms :: ["2025"]
+2025-08-23T05:38:52.414292716Z 5:38:52 AM [express] GET /api/bets 304 in 1240ms :: [{"id":"b6dbc10a-f172-41c3-ae1f-b98bb5d352bb","u…
+2025-08-23T05:38:52.473793918Z 5:38:52 AM [express] GET /api/bets/stats 304 in 1351ms :: {"totalStake":"138.00","totalPayout":"0.00…
+2025-08-23T05:38:59.393496937Z Updated bet status: {
+2025-08-23T05:38:59.393522438Z   id: 'b6dbc10a-f172-41c3-ae1f-b98bb5d352bb',
+2025-08-23T05:38:59.393528418Z   userId: '12b8ab31-4487-469e-946d-87ac260d348a',
+2025-08-23T05:38:59.393532558Z   stake: '55.00',
+2025-08-23T05:38:59.393536418Z   payout: '0.00',
+2025-08-23T05:38:59.393540538Z   betType: 'gastos',
+2025-08-23T05:38:59.393544548Z   status: 'lost',
+2025-08-23T05:38:59.393548768Z   house: null,
+2025-08-23T05:38:59.393553538Z   description: 'Pizza ifood',
+2025-08-23T05:38:59.393557658Z   placedAt: 2025-08-23T12:00:00.000Z,
+2025-08-23T05:38:59.393561799Z   createdAt: 2025-08-23T05:25:33.901Z,
+2025-08-23T05:38:59.393580669Z   updatedAt: 2025-08-23T05:38:59.315Z
+2025-08-23T05:38:59.393584779Z }
+2025-08-23T05:38:59.394479623Z 5:38:59 AM [express] PATCH /api/bets/b6dbc10a-f172-41c3-ae1f-b98bb5d352bb/status 200 in 310ms :: {"i…
+2025-08-23T05:39:00.002159188Z 5:39:00 AM [express] GET /api/bets/stats 200 in 405ms :: {"totalStake":"138.00","totalPayout":"0","t…
+2025-08-23T05:39:00.094729147Z 5:39:00 AM [express] GET /api/bets 200 in 504ms :: [{"id":"b6dbc10a-f172-41c3-ae1f-b98bb5d352bb","us…
+2025-08-23T05:39:00.303274469Z 5:39:00 AM [express] GET /api/bets/stats 200 in 660ms :: {"totalStake":"55.00","totalPayout":"0","to…
+2025-08-23T05:39:06.026034741Z Updated bet status: {
+2025-08-23T05:39:06.026060592Z   id: 'b6dbc10a-f172-41c3-ae1f-b98bb5d352bb',
+2025-08-23T05:39:06.026065182Z   userId: '12b8ab31-4487-469e-946d-87ac260d348a',
+2025-08-23T05:39:06.026069102Z   stake: '55.00',
+2025-08-23T05:39:06.026072532Z   payout: '0.00',
+2025-08-23T05:39:06.026075902Z   betType: 'gastos',
+2025-08-23T05:39:06.026079262Z   status: 'pending',
+2025-08-23T05:39:06.026082712Z   house: null,
+2025-08-23T05:39:06.026086772Z   description: 'Pizza ifood',
+2025-08-23T05:39:06.026096653Z   placedAt: 2025-08-23T12:00:00.000Z,
+2025-08-23T05:39:06.026100883Z   createdAt: 2025-08-23T05:25:33.901Z,
+2025-08-23T05:39:06.026104373Z   updatedAt: 2025-08-23T05:39:05.960Z
+2025-08-23T05:39:06.026119853Z }
+2025-08-23T05:39:06.026710119Z 5:39:06 AM [express] PATCH /api/bets/b6dbc10a-f172-41c3-ae1f-b98bb5d352bb/status 200 in 555ms :: {"i…
+2025-08-23T05:39:06.718593874Z 5:39:06 AM [express] GET /api/bets 200 in 497ms :: [{"id":"b6dbc10a-f172-41c3-ae1f-b98bb5d352bb","us…
+2025-08-23T05:39:06.903135806Z 5:39:06 AM [express] GET /api/bets/stats 200 in 680ms :: {"totalStake":"55.00","totalPayout":"0","to…
+2025-08-23T05:39:07.58357806Z 5:39:07 AM [express] GET /api/bets/stats 200 in 1359ms :: {"totalStake":"138.00","totalPayout":"0","…
+2025-08-23T05:39:22.869148667Z Updated bet status: {
+2025-08-23T05:39:22.869179268Z   id: 'b6dbc10a-f172-41c3-ae1f-b98bb5d352bb',
+2025-08-23T05:39:22.869183118Z   userId: '12b8ab31-4487-469e-946d-87ac260d348a',
+2025-08-23T05:39:22.869185558Z   stake: '55.00',
+2025-08-23T05:39:22.869187898Z   payout: '0.00',
+2025-08-23T05:39:22.869191138Z   betType: 'gastos',
+2025-08-23T05:39:22.869194028Z   status: 'completed',
+2025-08-23T05:39:22.869196959Z   house: null,
+2025-08-23T05:39:22.869200299Z   description: 'Pizza ifood',
+2025-08-23T05:39:22.869203129Z   placedAt: 2025-08-23T12:00:00.000Z,
+2025-08-23T05:39:22.869205939Z   createdAt: 2025-08-23T05:25:33.901Z,
+2025-08-23T05:39:22.869208529Z   updatedAt: 2025-08-23T05:39:22.804Z
+2025-08-23T05:39:22.869211129Z }
+2025-08-23T05:39:22.871437387Z 5:39:22 AM [express] PATCH /api/bets/b6dbc10a-f172-41c3-ae1f-b98bb5d352bb/status 200 in 1254ms :: {"…
+2025-08-23T05:39:23.678858054Z 5:39:23 AM [express] GET /api/bets/stats 200 in 634ms :: {"totalStake":"138.00","totalPayout":"0.00"…
+2025-08-23T05:39:24.283817978Z 5:39:24 AM [express] GET /api/bets 200 in 1225ms :: [{"id":"b6dbc10a-f172-41c3-ae1f-b98bb5d352bb","u…
+2025-08-23T05:39:24.390146128Z 5:39:24 AM [express] GET /api/bets/stats 200 in 1344ms :: {"totalStake":"55.00","totalPayout":"0.00"…
+2025-08-23T05:39:31.865430679Z ==> Deploying...
+2025-08-23T05:39:42.852527544Z Deleted bet: b6dbc10a-f172-41c3-ae1f-b98bb5d352bb
+2025-08-23T05:39:42.853270983Z 5:39:42 AM [express] DELETE /api/bets/b6dbc10a-f172-41c3-ae1f-b98bb5d352bb 200 in 1193ms :: {"messag…
+2025-08-23T05:39:48.89953574Z ==> Running 'npm run start'
+2025-08-23T05:39:49.800070645Z 
+2025-08-23T05:39:49.800091335Z > rest-express@1.0.0 start
+2025-08-23T05:39:49.800095745Z > NODE_ENV=production node dist/index.js
+2025-08-23T05:39:49.800098815Z 
+2025-08-23T05:39:49.946865017Z 5:39:49 AM [express] GET /api/bets 304 in 541ms :: [{"id":"6a7a7b1e-b5e9-4e1e-8d0e-a69a7f33fda8","us…
+2025-08-23T05:39:55.805782821Z Connecting to database: postgresql://postgres.pjckjjzcvfrqywezwdkt:****@aws-1-sa-east-1.pooler.supabase.com:6543/postgres
+2025-08-23T05:39:55.807119935Z Database connected successfully to Supabase
+2025-08-23T05:39:56.209185507Z 5:39:56 AM [express] serving on port 10000
+2025-08-23T05:40:02.836570829Z ==> Your service is live 🎉
+2025-08-23T05:40:02.926934577Z ==> 
+2025-08-23T05:40:03.010930216Z ==> ///////////////////////////////////////////////////////////
+2025-08-23T05:40:03.095159395Z ==> 
+2025-08-23T05:40:03.179399844Z ==> Available at your primary URL https://sosaaaa.onrender.com
+2025-08-23T05:40:03.289783459Z ==> 
+2025-08-23T05:40:03.381398847Z ==> ///////////////////////////////////////////////////////////
+2025-08-23T05:40:06.655761447Z Deleted bet: b6dbc10a-f172-41c3-ae1f-b98bb5d352bb
+2025-08-23T05:40:06.658168898Z 5:40:06 AM [express] DELETE /api/bets/b6dbc10a-f172-41c3-ae1f-b98bb5d352bb 200 in 1661ms :: {"messag…
+2025-08-23T05:40:07.248475338Z 5:40:07 AM [express] GET /api/bets/stats 200 in 406ms :: {"totalStake":"83.00","totalPayout":"0","to…
+2025-08-23T05:40:07.495997622Z 5:40:07 AM [express] GET /api/bets/stats 200 in 651ms :: {"totalStake":"0","totalPayout":"0","totalP…
+2025-08-23T05:40:08.108040801Z 5:40:08 AM [express] GET /api/bets 200 in 1213ms :: []
+2025-08-23T05:40:12.204660029Z 5:40:12 AM [express] GET /api/bets 304 in 559ms :: [{"id":"6a7a7b1e-b5e9-4e1e-8d0e-a69a7f33fda8","us…
+2025-08-23T05:40:49.021051442Z Created bet: {
+2025-08-23T05:40:49.021080272Z   id: '1150c7ac-2e45-430d-bb8a-9d0be4cc9a04',
+2025-08-23T05:40:49.021087663Z   userId: '12b8ab31-4487-469e-946d-87ac260d348a',
+2025-08-23T05:40:49.021094183Z   stake: '54.99',
+2025-08-23T05:40:49.021097833Z   payout: '0.00',
+2025-08-23T05:40:49.021101243Z   betType: 'gastos',
+2025-08-23T05:40:49.021105033Z   status: 'pending',
+2025-08-23T05:40:49.021108423Z   house: null,
+2025-08-23T05:40:49.021112123Z   description: 'ifood',
+2025-08-23T05:40:49.021115673Z   placedAt: 2025-08-23T12:00:00.000Z,
+2025-08-23T05:40:49.021119083Z   createdAt: 2025-08-23T05:40:48.945Z,
+2025-08-23T05:40:49.021122523Z   updatedAt: 2025-08-23T05:40:48.945Z
+2025-08-23T05:40:49.021126023Z }
+2025-08-23T05:40:49.021853562Z 5:40:49 AM [express] POST /api/bets 200 in 1309ms :: {"id":"1150c7ac-2e45-430d-bb8a-9d0be4cc9a04","u…
+2025-08-23T05:40:49.896146888Z 5:40:49 AM [express] GET /api/bets/stats 200 in 660ms :: {"totalStake":"137.99","totalPayout":"0","t…
+2025-08-23T05:40:50.468249132Z 5:40:50 AM [express] GET /api/bets 200 in 1213ms :: [{"id":"1150c7ac-2e45-430d-bb8a-9d0be4cc9a04","u…
+2025-08-23T05:40:50.604508839Z 5:40:50 AM [express] GET /api/bets/stats 200 in 1316ms :: {"totalStake":"54.99","totalPayout":"0","t…
+2025-08-23T05:40:51.367338394Z 5:40:51 AM [express] GET /api/auth/user 304 in 270ms :: {"id":"12b8ab31-4487-469e-946d-87ac260d348a"…
+2025-08-23T05:40:55.798245809Z Updated bet status: {
+2025-08-23T05:40:55.79826589Z   id: '1150c7ac-2e45-430d-bb8a-9d0be4cc9a04',
+2025-08-23T05:40:55.79827079Z   userId: '12b8ab31-4487-469e-946d-87ac260d348a',
+2025-08-23T05:40:55.79827432Z   stake: '54.99',
+2025-08-23T05:40:55.79827863Z   payout: '0.00',
+2025-08-23T05:40:55.79828232Z   betType: 'gastos',
+2025-08-23T05:40:55.79828585Z   status: 'completed',
+2025-08-23T05:40:55.79828932Z   house: null,
+2025-08-23T05:40:55.79829281Z   description: 'ifood',
+2025-08-23T05:40:55.798296241Z   placedAt: 2025-08-23T12:00:00.000Z,
+2025-08-23T05:40:55.798299631Z   createdAt: 2025-08-23T05:40:48.945Z,
+2025-08-23T05:40:55.798313941Z   updatedAt: 2025-08-23T05:40:55.734Z
+2025-08-23T05:40:55.798317331Z }
+2025-08-23T05:40:55.799007968Z 5:40:55 AM [express] PATCH /api/bets/1150c7ac-2e45-430d-bb8a-9d0be4cc9a04/status 200 in 514ms :: {"i…
+2025-08-23T05:40:56.390213664Z 5:40:56 AM [express] GET /api/bets/stats 200 in 402ms :: {"totalStake":"137.99","totalPayout":"0.00"…
+2025-08-23T05:40:56.495393077Z 5:40:56 AM [express] GET /api/bets 200 in 518ms :: [{"id":"1150c7ac-2e45-430d-bb8a-9d0be4cc9a04","us…
+2025-08-23T05:40:56.614592364Z 5:40:56 AM [express] GET /api/bets/stats 200 in 629ms :: {"totalStake":"54.99","totalPayout":"0.00",…
+2025-08-23T05:41:15.398272333Z Error creating bucket: StorageApiError: new row violates row-level security policy
+2025-08-23T05:41:15.398292714Z     at /opt/render/project/src/node_modules/@supabase/storage-js/dist/main/lib/fetch.js:24:20
+2025-08-23T05:41:15.398299264Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+2025-08-23T05:41:15.398304444Z   __isStorageError: true,
+2025-08-23T05:41:15.398309084Z   status: 400,
+2025-08-23T05:41:15.398313874Z   statusCode: '403'
+2025-08-23T05:41:15.398317754Z }
+2025-08-23T05:41:15.889932917Z Supabase upload error: StorageApiError: new row violates row-level security policy
+2025-08-23T05:41:15.889961128Z     at /opt/render/project/src/node_modules/@supabase/storage-js/dist/main/lib/fetch.js:24:20
+2025-08-23T05:41:15.889966158Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+2025-08-23T05:41:15.889971578Z   __isStorageError: true,
+2025-08-23T05:41:15.889976098Z   status: 400,
+2025-08-23T05:41:15.889980868Z   statusCode: '403'
+2025-08-23T05:41:15.889984908Z }
+2025-08-23T05:41:15.890592214Z 5:41:15 AM [express] POST /api/profile/photo/upload 500 in 1975ms :: {"message":"Failed to upload im…
+2025-08-23T05:41:18.223801641Z Error creating bucket: StorageApiError: new row violates row-level security policy
+2025-08-23T05:41:18.223828982Z     at /opt/render/project/src/node_modules/@supabase/storage-js/dist/main/lib/fetch.js:24:20
+2025-08-23T05:41:18.223834652Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+2025-08-23T05:41:18.223839742Z   __isStorageError: true,
+2025-08-23T05:41:18.223844312Z   status: 400,
+2025-08-23T05:41:18.223849352Z   statusCode: '403'
+2025-08-23T05:41:18.223853612Z }
+2025-08-23T05:41:18.683771767Z 5:41:18 AM [express] POST /api/profile/photo/upload 500 in 1438ms :: {"message":"Failed to upload im…
+2025-08-23T05:41:18.683825978Z Supabase upload error: StorageApiError: new row violates row-level security policy
+2025-08-23T05:41:18.683832488Z     at /opt/render/project/src/node_modules/@supabase/storage-js/dist/main/lib/fetch.js:24:20
+2025-08-23T05:41:18.683836798Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+2025-08-23T05:41:18.683841098Z   __isStorageError: true,
+2025-08-23T05:41:18.683844918Z   status: 400,
+2025-08-23T05:41:18.683849298Z   statusCode: '403'
+2025-08-23T05:41:18.683853038Z }
+2025-08-23T05:41:27.105732665Z Error creating bucket: StorageApiError: new row violates row-level security policy
+2025-08-23T05:41:27.105755616Z     at /opt/render/project/src/node_modules/@supabase/storage-js/dist/main/lib/fetch.js:24:20
+2025-08-23T05:41:27.105760776Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+2025-08-23T05:41:27.105766126Z   __isStorageError: true,
+2025-08-23T05:41:27.105770266Z   status: 400,
+2025-08-23T05:41:27.105774977Z   statusCode: '403'
+2025-08-23T05:41:27.105778927Z }
+2025-08-23T05:41:27.572018041Z Supabase upload error: StorageApiError: new row violates row-level security policy
+2025-08-23T05:41:27.572053342Z     at /opt/render/project/src/node_modules/@supabase/storage-js/dist/main/lib/fetch.js:24:20
+2025-08-23T05:41:27.572056262Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+2025-08-23T05:41:27.572061782Z   __isStorageError: true,
+2025-08-23T05:41:27.572063992Z   status: 400,
+2025-08-23T05:41:27.572066682Z   statusCode: '403'
+2025-08-23T05:41:27.572068802Z }
+2025-08-23T05:41:27.572640717Z 5:41:27 AM [express] POST /api/profile/photo/upload 500 in 1920ms :: {"message":"Failed to upload im…
+2025-08-23T05:41:29.981066802Z Error creating bucket: StorageApiError: new row violates row-level security policy
+2025-08-23T05:41:29.981087473Z     at /opt/render/project/src/node_modules/@supabase/storage-js/dist/main/lib/fetch.js:24:20
+2025-08-23T05:41:29.981092603Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+2025-08-23T05:41:29.981097333Z   __isStorageError: true,
+2025-08-23T05:41:29.981101573Z   status: 400,
+2025-08-23T05:41:29.981106713Z   statusCode: '403'
+2025-08-23T05:41:29.981110744Z }
+2025-08-23T05:41:30.190670001Z Supabase upload error: StorageApiError: new row violates row-level security policy
+2025-08-23T05:41:30.190706602Z     at /opt/render/project/src/node_modules/@supabase/storage-js/dist/main/lib/fetch.js:24:20
+2025-08-23T05:41:30.190716702Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+2025-08-23T05:41:30.190723282Z   __isStorageError: true,
+2025-08-23T05:41:30.190727852Z   status: 400,
+2025-08-23T05:41:30.190732572Z   statusCode: '403'
+2025-08-23T05:41:30.190736073Z }
+2025-08-23T05:41:30.191341038Z 5:41:30 AM [express] POST /api/profile/photo/upload 500 in 1222ms :: {"message":"Failed to upload im…
