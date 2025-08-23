@@ -9,6 +9,7 @@ import { isUnauthorizedError } from "@/lib/authUtils";
 import { formatCurrency, formatCurrencyWithSign, formatDate } from "@/lib/formatters";
 import { BET_TYPES, type Bet, type BetFilters, type BetStatus } from "@/lib/types";
 import { Trash2, Eye, Clock, CheckCircle, XCircle, Calendar } from "lucide-react";
+import { memo, useMemo, useCallback } from "react";
 
 interface BetsTableProps {
   filters: BetFilters;
@@ -28,7 +29,7 @@ const getBetTypeColor = (betType: string) => {
   return colors[betType as keyof typeof colors] || '#6B7280';
 };
 
-export default function BetsTable({ filters }: BetsTableProps) {
+function BetsTable({ filters }: BetsTableProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -293,7 +294,15 @@ export default function BetsTable({ filters }: BetsTableProps) {
         </thead>
         <tbody className="divide-y divide-zinc-700/50">
           {bets.map((bet) => {
-            const profit = parseFloat(bet.profit);
+            // FIX: Calcular lucro consistente como no saldo do dia
+            const stake = parseFloat(bet.stake) || 0;
+            const payout = parseFloat(bet.payout) || 0;
+            const profit = bet.status === 'completed' 
+              ? (payout - stake) // Para apostas finalizadas: payout - stake
+              : bet.status === 'lost' 
+              ? -stake // Para apostas perdidas: -stake
+              : 0; // Para apostas pendentes: 0
+            
             const betDate = formatDateForDisplay(bet.placedAt);
 
             return (
@@ -335,10 +344,8 @@ export default function BetsTable({ filters }: BetsTableProps) {
                 <td className="px-6 py-4 text-sm text-right text-oled-secondary">
                   {formatCurrency(bet.payout)}
                 </td>
-                <td className={`px-6 py-4 text-sm text-right font-semibold ${bet.status === 'completed' ? (profit >= 0 ? 'text-pos' : 'text-neg') : 'text-zinc-500'}`}>
-                  {bet.status === 'completed' ? formatCurrencyWithSign(profit) : 
-                   bet.status === 'lost' ? formatCurrencyWithSign(-parseFloat(bet.stake)) : 
-                   '-'}
+                <td className={`px-6 py-4 text-sm text-right font-semibold ${profit > 0 ? 'text-pos' : profit < 0 ? 'text-neg' : 'text-zinc-500'}`}>
+                  {profit !== 0 ? formatCurrencyWithSign(profit) : '-'}
                 </td>
                 <td className="px-6 py-4 text-center">
                   <Button
@@ -394,7 +401,15 @@ export default function BetsTable({ filters }: BetsTableProps) {
         </thead>
         <tbody className="divide-y divide-zinc-700/50">
           {bets.map((bet) => {
-            const profit = parseFloat(bet.profit);
+            // FIX: Calcular lucro consistente como no saldo do dia
+            const stake = parseFloat(bet.stake) || 0;
+            const payout = parseFloat(bet.payout) || 0;
+            const profit = bet.status === 'completed' 
+              ? (payout - stake) // Para apostas finalizadas: payout - stake
+              : bet.status === 'lost' 
+              ? -stake // Para apostas perdidas: -stake
+              : 0; // Para apostas pendentes: 0
+            
             const betDate = formatTimeSafely(bet.placedAt);
 
             return (
@@ -435,10 +450,8 @@ export default function BetsTable({ filters }: BetsTableProps) {
                 <td className="px-6 py-4 text-sm text-right text-oled-secondary">
                   {formatCurrency(bet.payout)}
                 </td>
-                <td className={`px-6 py-4 text-sm text-right font-semibold ${bet.status === 'completed' ? (profit >= 0 ? 'text-pos' : 'text-neg') : 'text-zinc-500'}`}>
-                  {bet.status === 'completed' ? formatCurrencyWithSign(profit) : 
-                   bet.status === 'lost' ? formatCurrencyWithSign(-parseFloat(bet.stake)) : 
-                   '-'}
+                <td className={`px-6 py-4 text-sm text-right font-semibold ${profit > 0 ? 'text-pos' : profit < 0 ? 'text-neg' : 'text-zinc-500'}`}>
+                  {profit !== 0 ? formatCurrencyWithSign(profit) : '-'}
                 </td>
                 <td className="px-6 py-4 text-center">
                   <Button
@@ -678,3 +691,5 @@ export default function BetsTable({ filters }: BetsTableProps) {
     );
   }
 }
+
+export default memo(BetsTable);
