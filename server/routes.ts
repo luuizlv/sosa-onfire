@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { setupSupabaseAuth, isAuthenticated } from "./supabaseAuth";
+import { setupSupabaseAuth, isAuthenticated, supabase } from "./supabaseAuth";
 import { storage, createBrazilDate } from "./storage";
 
 
@@ -135,14 +135,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/bets", isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.id;
-      const { stake, payout, betType, house, description, placedAt } = req.body;
+      const { stake, payout, betType, house, description, placedAt, status } = req.body;
 
       const betData = {
         userId: userId,
         stake: stake,
         payout: payout,
         betType: betType,
-        status: 'pending' as const, // Force pending status
+        status: status || 'pending' as const, // Use provided status or default to pending
         house: house || null,
         description: description || null,
         placedAt: placedAt,
@@ -192,22 +192,66 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Update user profile photo
-  app.patch("/api/profile/photo", isAuthenticated, async (req: any, res) => {
+  // Upload user profile photo to Supabase Storage
+  app.post("/api/profile/photo/upload", isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.id;
-      const { profileImageUrl } = req.body;
+      const { fileBase64, fileName } = req.body;
       
-      if (!profileImageUrl) {
-        return res.status(400).json({ message: "Profile image URL is required" });
+      if (!fileBase64 || !fileName) {
+        return res.status(400).json({ message: "File data and name are required" });
       }
 
-      const updatedUser = await storage.updateUserProfileImage(userId, profileImageUrl);
-      console.log("Updated user profile photo:", updatedUser.id);
-      res.json(updatedUser);
+      // Remove data URL prefix (data:image/jpeg;base64,)
+      const base64Data = fileBase64.replace(/^data:image\/[a-z]+;base64,/, '');
+      const fileBuffer = Buffer.from(base64Data, 'base64');
+
+      // Check if bucket exists, create if not
+      const { data: buckets } = await supabase.storage.listBuckets();
+      const bucketExists = buckets?.some(bucket => bucket.name === 'profile-images');
+      
+      if (!bucketExists) {
+        const { error: bucketError } = await supabase.storage.createBucket('profile-images', {
+          public: true
+        });
+        if (bucketError) {
+          console.error("Error creating bucket:", bucketError);
+        }
+      }
+
+      // Upload to Supabase Storage
+      const filePath = `${userId}/${Date.now()}-${fileName}`;
+      
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('profile-images')
+        .upload(filePath, fileBuffer, {
+          contentType: 'image/jpeg',
+          upsert: true
+        });
+
+      if (uploadError) {
+        console.error("Supabase upload error:", uploadError);
+        return res.status(500).json({ message: "Failed to upload image to storage" });
+      }
+
+      // Get public URL
+      const { data: urlData } = supabase.storage
+        .from('profile-images')
+        .getPublicUrl(filePath);
+
+      const publicUrl = urlData.publicUrl;
+
+      // Update user profile in database
+      const updatedUser = await storage.updateUserProfileImage(userId, publicUrl);
+      console.log("Updated user profile photo with Supabase URL:", updatedUser.id);
+      
+      res.json({ 
+        user: updatedUser,
+        imageUrl: publicUrl 
+      });
     } catch (error) {
-      console.error("Error updating profile photo:", error);
-      res.status(500).json({ message: "Failed to update profile photo" });
+      console.error("Error uploading profile photo:", error);
+      res.status(500).json({ message: "Failed to upload profile photo" });
     }
   });
 

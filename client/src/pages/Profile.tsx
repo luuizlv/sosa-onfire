@@ -30,27 +30,41 @@ export default function Profile() {
       setProfilePhoto(user.profileImageUrl);
     }
   }, [user]);
+
+  // Reset profile photo when user data is loaded
+  useEffect(() => {
+    if (user && !profilePhoto && user.profileImageUrl) {
+      setProfilePhoto(user.profileImageUrl);
+    }
+  }, [user, profilePhoto]);
   const [isChangingPassword, setIsChangingPassword] = useState(false);
 
-  // Mutation to update profile photo
+  // Mutation to upload profile photo to Supabase Storage
   const updatePhotoMutation = useMutation({
-    mutationFn: async (profileImageUrl: string) => {
-      const res = await apiRequest("PATCH", "/api/profile/photo", { profileImageUrl });
+    mutationFn: async ({ fileBase64, fileName }: { fileBase64: string, fileName: string }) => {
+      const res = await apiRequest("POST", "/api/profile/photo/upload", { 
+        fileBase64, 
+        fileName 
+      });
       return res.json();
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       // Force a complete refetch of user data
       queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
       queryClient.refetchQueries({ queryKey: ["/api/auth/user"] });
+      
+      // Update local state with the Supabase URL
+      setProfilePhoto(data.imageUrl);
+      
       toast({
         title: "Sucesso",
-        description: "Foto de perfil atualizada e salva na nuvem!",
+        description: "Foto de perfil salva na nuvem Supabase!",
       });
     },
-    onError: () => {
+    onError: (error) => {
       toast({
         title: "Erro",
-        description: "Falha ao salvar a foto de perfil",
+        description: "Falha ao fazer upload da foto para a nuvem",
         variant: "destructive",
       });
     }
@@ -72,7 +86,7 @@ export default function Profile() {
       reader.onload = (e) => {
         const photoData = e.target?.result as string;
         setProfilePhoto(photoData);
-        // Não salva automaticamente - aguarda o usuário clicar em "Salvar Perfil"
+        // Preview local, mas vai salvar no Supabase quando clicar em "Salvar Perfil"
       };
       reader.readAsDataURL(file);
     }
@@ -80,7 +94,13 @@ export default function Profile() {
 
   const handleSaveProfile = () => {
     if (profilePhoto && profilePhoto !== (user?.profileImageUrl || '')) {
-      updatePhotoMutation.mutate(profilePhoto);
+      // Get filename from current timestamp
+      const fileName = `profile-${Date.now()}.jpg`;
+      
+      updatePhotoMutation.mutate({ 
+        fileBase64: profilePhoto, 
+        fileName 
+      });
     } else {
       toast({
         title: "Info",

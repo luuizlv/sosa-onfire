@@ -1,82 +1,82 @@
-# Overview
+# SOSA - Bet Tracking System
 
-This is a full-stack betting dashboard application called "SOSA" built with React, Express.js, and PostgreSQL. The application allows users to track their betting activities across different bet types (surebet, giros, superodd, DNC, gastos, bingos, extração), visualize profits/losses with interactive charts, and manage their betting history with detailed filtering options. The dashboard features a modern dark OLED theme with wine red and gold colors, Brazilian Portuguese localization, and currency formatting in Brazilian Reais (BRL).
+## Overview
 
-# User Preferences
+SOSA is a comprehensive bet tracking and analytics platform designed for monitoring gambling activities and analyzing performance metrics. The application provides users with detailed statistics, profit/loss tracking, and betting insights through an intuitive dashboard interface. Built with modern web technologies, it offers real-time data visualization and secure user authentication.
+
+## User Preferences
 
 Preferred communication style: Simple, everyday language.
 
-## Recent Changes
+## System Architecture
 
-**August 22, 2025**
-- Complete rebranding from "Hermes" to "SOSA"
-- Implemented dark OLED theme with wine red/dark/gold color palette
-- Updated logo to new SOSA branding
-- Removed "All Months" filter option from sidebar
-- Implemented new betting history organization:
-  - "Apostas Recentes" shows only today's bets with timestamps
-  - "Apostas Feitas" appears only when specific month is selected, shows dates instead of times
-  - Automatic daily cleanup system moves today's bets to monthly archives
-
-**August 21, 2025**
-- Migrated authentication from Replit Auth to Supabase Auth for Vercel deployment compatibility
-- Updated login system: username-only registration, email/username login support
-- Configured for deployment on Vercel with Supabase backend
-- Removed MFA/email confirmation requirements for easier user onboarding
-
-# System Architecture
-
-## Frontend Architecture
-The frontend is built with React 18 using Vite as the build tool and bundler. The application uses a component-based architecture with:
-
+### Frontend Architecture
+- **Framework**: React with TypeScript for type safety
+- **Build Tool**: Vite for fast development and optimized builds
+- **UI Library**: Radix UI components with Tailwind CSS for styling
+- **State Management**: TanStack Query for server state management
 - **Routing**: Wouter for lightweight client-side routing
-- **State Management**: TanStack Query (React Query) for server state management and caching
-- **UI Components**: Radix UI primitives with shadcn/ui component library for consistent design system
-- **Styling**: Tailwind CSS with custom CSS variables for theming, implementing a dark theme with custom color palette
-- **Charts**: Recharts for data visualization of profit/loss trends
-- **Forms**: React Hook Form with Zod validation for type-safe form handling
+- **Design System**: Custom dark OLED theme with wine red and gold accent colors
 
-The frontend follows a modern React patterns approach with custom hooks for authentication and API interactions. Components are organized into pages, reusable UI components, and feature-specific components.
+### Backend Architecture
+- **Framework**: Express.js with TypeScript
+- **Database ORM**: Drizzle ORM for type-safe database operations
+- **Session Management**: Express sessions with PostgreSQL storage
+- **API Design**: RESTful API endpoints with proper error handling
+- **File Structure**: Monorepo structure with shared types between client and server
 
-## Backend Architecture
-The backend uses Express.js with TypeScript, implementing a RESTful API architecture:
+### Database Design
+- **Primary Database**: PostgreSQL with structured schema
+- **Tables**: Users, bets, and sessions tables
+- **Schema Management**: Drizzle Kit for migrations and schema management
+- **Data Types**: Enums for bet types and status, decimal precision for monetary values
+- **Relationships**: Foreign key relationships between users and bets
 
-- **API Design**: RESTful endpoints for CRUD operations on bets and user data
-- **Middleware**: Custom request logging, error handling, and authentication middleware
-- **Database Layer**: Drizzle ORM for type-safe database operations and query building
-- **Session Management**: Express sessions with PostgreSQL storage for persistence
+### Authentication System
+- **Provider**: Supabase Auth for user management
+- **Token Management**: JWT tokens stored in localStorage
+- **Middleware**: Custom authentication middleware for API protection
+- **Session Handling**: Persistent sessions with automatic token refresh
 
-The server implements a storage abstraction pattern through an IStorage interface, making it easy to swap database implementations while maintaining consistent business logic.
+### Data Management
+- **Bet Types**: Categorized betting activities (surebet, giros, superodd, etc.)
+- **Status Tracking**: Pending, completed, and lost bet statuses
+- **Financial Calculations**: Automatic profit/loss calculations and ROI metrics
+- **Filtering System**: Advanced filtering by date, type, house, and custom periods
 
-## Data Storage Solutions
-The application uses PostgreSQL as the primary database with Supabase as the serverless PostgreSQL provider:
-
-- **Schema Design**: Well-structured tables for users, bets, and sessions with proper relationships
-- **Type Safety**: Drizzle ORM provides compile-time type safety for database operations
-- **Migrations**: Drizzle Kit handles database schema migrations and versioning
-- **Connection Pooling**: Supabase PostgreSQL connection pooling for efficient database access
-
-The database schema includes support for different bet types through PostgreSQL enums and stores monetary values as decimal types for precision. Users table updated to work with Supabase Auth UUID system.
-
-## Authentication and Authorization
-Authentication is handled through Supabase Auth for Vercel deployment compatibility:
-
-- **Provider**: Supabase Auth with email/password authentication
-- **Token Management**: JWT tokens stored in localStorage for client-side state
-- **Authorization**: Bearer token authentication with isAuthenticated middleware
-- **User Management**: Automatic user creation and profile management through Supabase Auth API
-- **Frontend Integration**: Custom useAuth hook with login, logout, and user state management
-
-The authentication system supports secure login/signup with email verification and is fully compatible with Vercel deployments.
+### UI/UX Features
+- **Responsive Design**: Mobile-first approach with adaptive layouts
+- **Dark Theme**: OLED-optimized dark theme for better viewing experience
+- **Data Visualization**: Charts and graphs using Recharts library
+- **Real-time Updates**: Live data updates using React Query
+- **Form Handling**: React Hook Form with Zod validation
 
 ## External Dependencies
 
-- **Database**: Supabase serverless PostgreSQL for data persistence
-- **Authentication**: Supabase Auth for user authentication and session management
-- **UI Components**: Radix UI primitives for accessible, unstyled components
-- **Charts**: Recharts library for interactive data visualization
-- **Styling**: Tailwind CSS for utility-first styling approach
-- **Build Tools**: Vite for fast development and optimized production builds
-- **ORM**: Drizzle ORM for type-safe database operations
-- **Validation**: Zod for runtime type validation and schema definition
-- **HTTP Client**: Native fetch API with JWT token authentication
+### Core Services
+- **Supabase**: Authentication, user management, and database hosting
+- **Neon Database**: PostgreSQL database as a service (alternative to Supabase DB)
+
+### Development Tools
+- **Vite**: Development server and build tool with React plugin support
+- **TypeScript**: Static type checking across the entire application
+- **Tailwind CSS**: Utility-first CSS framework for styling
+- **PostCSS**: CSS processing with Autoprefixer
+
+### UI Components
+- **Radix UI**: Headless UI components for accessibility and customization
+- **Lucide React**: Icon library for consistent iconography
+- **Recharts**: Data visualization and charting library
+- **React Hook Form**: Form state management and validation
+
+### Backend Libraries
+- **pg**: PostgreSQL client for Node.js
+- **connect-pg-simple**: PostgreSQL session store for Express
+- **express-session**: Session middleware for user state persistence
+- **nanoid**: URL-safe unique ID generator
+
+### Additional Utilities
+- **date-fns**: Date manipulation and formatting utilities
+- **clsx**: Conditional className utility
+- **class-variance-authority**: Type-safe variant API for components
+- **zod**: Schema validation for forms and API inputs

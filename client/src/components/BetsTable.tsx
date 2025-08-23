@@ -207,23 +207,39 @@ export default function BetsTable({ filters }: BetsTableProps) {
 
   // Separate recent bets (last 48h) from older bets
   const separateBetsByRecency = (betList: Bet[]) => {
-    const nowInBrazil = new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' });
-    const now = new Date(nowInBrazil);
-    const last48Hours = new Date(now.getTime() - (48 * 60 * 60 * 1000)); // 48 horas atrás
-    
-    const todaysBets: Bet[] = [];
-    const olderBets: Bet[] = [];
-    
-    betList.forEach(bet => {
-      const betDate = new Date(bet.placedAt);
-      if (betDate >= last48Hours) {
-        todaysBets.push(bet);
-      } else {
-        olderBets.push(bet);
-      }
-    });
-    
-    return { todaysBets, olderBets };
+    try {
+      const nowInBrazil = new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' });
+      const now = new Date(nowInBrazil);
+      const last48Hours = new Date(now.getTime() - (48 * 60 * 60 * 1000)); // 48 horas atrás
+      
+      const todaysBets: Bet[] = [];
+      const olderBets: Bet[] = [];
+      
+      betList.forEach(bet => {
+        try {
+          const betDate = new Date(bet.placedAt);
+          if (isNaN(betDate.getTime())) {
+            console.warn('Invalid bet date:', bet.placedAt, 'for bet:', bet.id);
+            olderBets.push(bet); // Put invalid dates in older bets as fallback
+            return;
+          }
+          
+          if (betDate >= last48Hours) {
+            todaysBets.push(bet);
+          } else {
+            olderBets.push(bet);
+          }
+        } catch (error) {
+          console.warn('Error processing bet date:', error, bet);
+          olderBets.push(bet); // Put error bets in older as fallback
+        }
+      });
+      
+      return { todaysBets, olderBets };
+    } catch (error) {
+      console.error('Error in separateBetsByRecency:', error);
+      return { todaysBets: [], olderBets: betList }; // Fallback: treat all as older
+    }
   };
 
   // Group older bets by date for monthly view
@@ -617,10 +633,17 @@ export default function BetsTable({ filters }: BetsTableProps) {
                   const dailyTotal = todaysBets
                     .filter(bet => bet.status === 'completed' || bet.status === 'lost')
                     .reduce((total, bet) => {
-                      const profit = bet.status === 'completed' 
-                        ? (parseFloat(bet.payout) - parseFloat(bet.stake))
-                        : -parseFloat(bet.stake);
-                      return total + profit;
+                      try {
+                        const stake = parseFloat(bet.stake) || 0;
+                        const payout = parseFloat(bet.payout) || 0;
+                        const profit = bet.status === 'completed' 
+                          ? (payout - stake)
+                          : -stake;
+                        return total + profit;
+                      } catch (error) {
+                        console.warn('Error calculating profit for bet:', bet.id, error);
+                        return total; // Skip invalid bets
+                      }
                     }, 0);
                   return dailyTotal >= 0 ? 'text-gold' : 'text-red-400';
                 })()
@@ -629,10 +652,17 @@ export default function BetsTable({ filters }: BetsTableProps) {
                   todaysBets
                     .filter(bet => bet.status === 'completed' || bet.status === 'lost')
                     .reduce((total, bet) => {
-                      const profit = bet.status === 'completed' 
-                        ? (parseFloat(bet.payout) - parseFloat(bet.stake))
-                        : -parseFloat(bet.stake);
-                      return total + profit;
+                      try {
+                        const stake = parseFloat(bet.stake) || 0;
+                        const payout = parseFloat(bet.payout) || 0;
+                        const profit = bet.status === 'completed' 
+                          ? (payout - stake)
+                          : -stake;
+                        return total + profit;
+                      } catch (error) {
+                        console.warn('Error calculating profit for bet:', bet.id, error);
+                        return total; // Skip invalid bets
+                      }
                     }, 0)
                 )}
               </div>
