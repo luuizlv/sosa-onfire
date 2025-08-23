@@ -1,0 +1,261 @@
+2025-08-22T20:46:59.169400895Z     at async file:///opt/render/project/src/dist/index.js:509:21 {
+2025-08-22T20:46:59.169403705Z   errno: -3008,
+2025-08-22T20:46:59.169407165Z   code: 'ENOTFOUND',
+2025-08-22T20:46:59.169410615Z   syscall: 'getaddrinfo',
+2025-08-22T20:46:59.169412385Z   hostname: 'base'
+2025-08-22T20:46:59.169414435Z }
+2025-08-22T20:46:59.17005443Z 8:46:59 PM [express] GET /api/bets/stats 500 in 431ms :: {"message":"Failed to fetch bet stats"}
+2025-08-22T20:46:59.175496267Z Error fetching available months: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:46:59.175505507Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:46:59.175508267Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:46:59.175510668Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:46:59.175515148Z     at async file:///opt/render/project/src/dist/index.js:441:21 {
+2025-08-22T20:46:59.175516917Z   errno: -3008,
+2025-08-22T20:46:59.175519298Z   code: 'ENOTFOUND',
+2025-08-22T20:46:59.175521508Z   syscall: 'getaddrinfo',
+2025-08-22T20:46:59.175535568Z   hostname: 'base'
+2025-08-22T20:46:59.175537428Z }
+2025-08-22T20:46:59.176027869Z 8:46:59 PM [express] GET /api/bets/months 500 in 438ms :: {"error":"Internal server error"}
+2025-08-22T20:47:18.066649303Z Error creating bet: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:47:18.066705334Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:47:18.066712854Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:47:18.066719374Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:47:18.066723814Z     at async DatabaseStorage.createBet (file:///opt/render/project/src/dist/index.js:151:23)
+2025-08-22T20:47:18.066728204Z     at async file:///opt/render/project/src/dist/index.js:529:22 {
+2025-08-22T20:47:18.066732234Z   errno: -3008,
+2025-08-22T20:47:18.066737185Z   code: 'ENOTFOUND',
+2025-08-22T20:47:18.066742045Z   syscall: 'getaddrinfo',
+2025-08-22T20:47:18.066745715Z   hostname: 'base'
+2025-08-22T20:47:18.066749355Z }
+2025-08-22T20:47:18.067300438Z 8:47:18 PM [express] POST /api/bets 500 in 429ms :: {"message":"Failed to create bet"}
+2025-08-22T20:47:19.677157837Z Error creating bet: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:47:19.677184978Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:47:19.677188908Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:47:19.677192438Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:47:19.677195448Z     at async DatabaseStorage.createBet (file:///opt/render/project/src/dist/index.js:151:23)
+2025-08-22T20:47:19.677198278Z     at async file:///opt/render/project/src/dist/index.js:529:22 {
+2025-08-22T20:47:19.677201128Z   errno: -3008,
+2025-08-22T20:47:19.677204729Z   code: 'ENOTFOUND',
+2025-08-22T20:47:19.677208238Z   syscall: 'getaddrinfo',
+2025-08-22T20:47:19.677211049Z   hostname: 'base'
+2025-08-22T20:47:19.677213839Z }
+2025-08-22T20:47:19.677779942Z 8:47:19 PM [express] POST /api/bets 500 in 423ms :: {"message":"Failed to create bet"}
+2025-08-22T20:47:27.26113858Z 8:47:27 PM [express] GET /api/bets 401 in 0ms :: {"error":"Token de acesso necessário"}
+2025-08-22T20:47:27.262607604Z 8:47:27 PM [express] GET /api/auth/user 401 in 0ms :: {"error":"Token de acesso necessário"}
+2025-08-22T20:47:27.263812672Z 8:47:27 PM [express] GET /api/bets/stats 401 in 0ms :: {"error":"Token de acesso necessário"}
+2025-08-22T20:47:27.266251609Z 8:47:27 PM [express] GET /api/bets/stats 401 in 1ms :: {"error":"Token de acesso necessário"}
+2025-08-22T20:47:27.268254686Z 8:47:27 PM [express] GET /api/bets/months 401 in 1ms :: {"error":"Token de acesso necessário"}
+2025-08-22T20:47:27.278596888Z 8:47:27 PM [express] GET /api/bets/years 401 in 0ms :: {"error":"Token de acesso necessário"}
+2025-08-22T20:48:48.02540164Z ==> Detected service running on port 10000
+2025-08-22T20:48:48.257484102Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2025-08-22T20:50:41.473956861Z ==> Deploying...
+2025-08-22T20:50:59.241062759Z ==> Running 'npm run start'
+2025-08-22T20:51:00.240256435Z 
+2025-08-22T20:51:00.240286496Z > rest-express@1.0.0 start
+2025-08-22T20:51:00.240291866Z > NODE_ENV=production node dist/index.js
+2025-08-22T20:51:00.240295056Z 
+2025-08-22T20:51:07.245673859Z Database connected successfully to Supabase
+2025-08-22T20:51:07.445662324Z 8:51:07 PM [express] serving on port 10000
+2025-08-22T20:51:12.22207319Z ==> Your service is live 🎉
+2025-08-22T20:51:12.304061803Z ==> 
+2025-08-22T20:51:12.383915017Z ==> ///////////////////////////////////////////////////////////
+2025-08-22T20:51:12.462047981Z ==> 
+2025-08-22T20:51:12.539701375Z ==> Available at your primary URL https://sosaaaa.onrender.com
+2025-08-22T20:51:12.617994229Z ==> 
+2025-08-22T20:51:12.698339702Z ==> ///////////////////////////////////////////////////////////
+2025-08-22T20:51:23.883133645Z 8:51:23 PM [express] POST /api/auth/login 401 in 469ms :: {"error":"Invalid login credentials"}
+2025-08-22T20:51:27.374527347Z Error upserting user: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:27.374556738Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:27.374561678Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:27.374566288Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:27.374571848Z     at async DatabaseStorage.upsertUser (file:///opt/render/project/src/dist/index.js:112:20)
+2025-08-22T20:51:27.374575898Z     at async file:///opt/render/project/src/dist/index.js:300:9 {
+2025-08-22T20:51:27.374580038Z   errno: -3008,
+2025-08-22T20:51:27.374584598Z   code: 'ENOTFOUND',
+2025-08-22T20:51:27.374589289Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:27.374593329Z   hostname: 'base'
+2025-08-22T20:51:27.374597389Z }
+2025-08-22T20:51:27.375684067Z 8:51:27 PM [express] POST /api/auth/login 200 in 294ms :: {"user":{"id":"12b8ab31-4487-469e-946d-87a…
+2025-08-22T20:51:28.44476155Z Error getting user from database: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:28.44478294Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:28.44478823Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:28.44479378Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:28.44479814Z     at async DatabaseStorage.getUser (file:///opt/render/project/src/dist/index.js:108:20)
+2025-08-22T20:51:28.444825641Z     at async file:///opt/render/project/src/dist/index.js:384:18 {
+2025-08-22T20:51:28.444930704Z   errno: -3008,
+2025-08-22T20:51:28.444939944Z   code: 'ENOTFOUND',
+2025-08-22T20:51:28.444944955Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:28.444949204Z   hostname: 'base'
+2025-08-22T20:51:28.444968995Z }
+2025-08-22T20:51:28.445517239Z 8:51:28 PM [express] GET /api/auth/user 304 in 432ms :: {"id":"12b8ab31-4487-469e-946d-87ac260d348a"…
+2025-08-22T20:51:29.027554657Z Error fetching bet stats: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:29.027579597Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:29.027583397Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:29.027586947Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:29.027590147Z     at async DatabaseStorage.getBetStats (file:///opt/render/project/src/dist/index.js:193:21)
+2025-08-22T20:51:29.027592847Z     at async file:///opt/render/project/src/dist/index.js:509:21 {
+2025-08-22T20:51:29.027595668Z   errno: -3008,
+2025-08-22T20:51:29.027599108Z   code: 'ENOTFOUND',
+2025-08-22T20:51:29.027617258Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:29.027619138Z   hostname: 'base'
+2025-08-22T20:51:29.027620868Z }
+2025-08-22T20:51:29.028275345Z 8:51:29 PM [express] GET /api/bets/stats 500 in 390ms :: {"message":"Failed to fetch bet stats"}
+2025-08-22T20:51:29.075943131Z Error fetching available months: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:29.075958951Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:29.075962501Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:29.075965631Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:29.075967942Z     at async file:///opt/render/project/src/dist/index.js:441:21 {
+2025-08-22T20:51:29.075970142Z   errno: -3008,
+2025-08-22T20:51:29.075973151Z   code: 'ENOTFOUND',
+2025-08-22T20:51:29.075975592Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:29.075977722Z   hostname: 'base'
+2025-08-22T20:51:29.075979852Z }
+2025-08-22T20:51:29.076607668Z 8:51:29 PM [express] GET /api/bets/months 500 in 438ms :: {"error":"Internal server error"}
+2025-08-22T20:51:29.15474869Z Error fetching bets: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:29.15477077Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:29.15477427Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:29.15477743Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:29.154780161Z     at async file:///opt/render/project/src/dist/index.js:431:21 {
+2025-08-22T20:51:29.154782881Z   errno: -3008,
+2025-08-22T20:51:29.154785941Z   code: 'ENOTFOUND',
+2025-08-22T20:51:29.154789041Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:29.154791491Z   hostname: 'base'
+2025-08-22T20:51:29.154793961Z }
+2025-08-22T20:51:29.156261819Z 8:51:29 PM [express] GET /api/bets 500 in 415ms :: {"error":"Internal server error"}
+2025-08-22T20:51:29.169930166Z Error fetching bet stats: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:29.169946017Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:29.169949897Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:29.169952987Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:29.169955757Z     at async DatabaseStorage.getBetStats (file:///opt/render/project/src/dist/index.js:193:21)
+2025-08-22T20:51:29.169958577Z     at async file:///opt/render/project/src/dist/index.js:509:21 {
+2025-08-22T20:51:29.169961177Z   errno: -3008,
+2025-08-22T20:51:29.169964047Z   code: 'ENOTFOUND',
+2025-08-22T20:51:29.169966967Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:29.169969518Z   hostname: 'base'
+2025-08-22T20:51:29.169971918Z }
+2025-08-22T20:51:29.170553973Z 8:51:29 PM [express] GET /api/bets/stats 500 in 525ms :: {"message":"Failed to fetch bet stats"}
+2025-08-22T20:51:29.176103288Z Error fetching available years: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:29.176105598Z 8:51:29 PM [express] GET /api/bets/years 500 in 531ms :: {"error":"Internal server error"}
+2025-08-22T20:51:29.176125278Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:29.176129468Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:29.176132879Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:29.176139089Z     at async file:///opt/render/project/src/dist/index.js:458:21 {
+2025-08-22T20:51:29.176141789Z   errno: -3008,
+2025-08-22T20:51:29.176145549Z   code: 'ENOTFOUND',
+2025-08-22T20:51:29.176161689Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:29.176164629Z   hostname: 'base'
+2025-08-22T20:51:29.17616724Z }
+2025-08-22T20:51:30.644710439Z Error fetching available months: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:30.644731419Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:30.644734579Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:30.644737439Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:30.64474352Z     at async file:///opt/render/project/src/dist/index.js:441:21 {
+2025-08-22T20:51:30.64474616Z   errno: -3008,
+2025-08-22T20:51:30.64474906Z   code: 'ENOTFOUND',
+2025-08-22T20:51:30.64475183Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:30.64475402Z   hostname: 'base'
+2025-08-22T20:51:30.64475616Z }
+2025-08-22T20:51:30.64590002Z 8:51:30 PM [express] GET /api/bets/months 500 in 383ms :: {"error":"Internal server error"}
+2025-08-22T20:51:30.663972492Z Error fetching bet stats: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:30.663989113Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:30.663993273Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:30.663996413Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:30.663998163Z     at async DatabaseStorage.getBetStats (file:///opt/render/project/src/dist/index.js:193:21)
+2025-08-22T20:51:30.663999933Z     at async file:///opt/render/project/src/dist/index.js:509:21 {
+2025-08-22T20:51:30.664001663Z   errno: -3008,
+2025-08-22T20:51:30.664003913Z   code: 'ENOTFOUND',
+2025-08-22T20:51:30.664006123Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:30.664007803Z   hostname: 'base'
+2025-08-22T20:51:30.664009843Z }
+2025-08-22T20:51:30.664691741Z 8:51:30 PM [express] GET /api/bets/stats 500 in 453ms :: {"message":"Failed to fetch bet stats"}
+2025-08-22T20:51:30.79018401Z Error fetching bets: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:30.79020596Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:30.790209811Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:30.790212851Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:30.79021526Z     at async file:///opt/render/project/src/dist/index.js:431:21 {
+2025-08-22T20:51:30.790218231Z   errno: -3008,
+2025-08-22T20:51:30.790221981Z   code: 'ENOTFOUND',
+2025-08-22T20:51:30.790225581Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:30.790228531Z   hostname: 'base'
+2025-08-22T20:51:30.790231381Z }
+2025-08-22T20:51:30.790925309Z 8:51:30 PM [express] GET /api/bets 500 in 421ms :: {"error":"Internal server error"}
+2025-08-22T20:51:30.791183076Z Error fetching bet stats: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:30.791189196Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:30.791192486Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:30.791196146Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:30.791198836Z     at async DatabaseStorage.getBetStats (file:///opt/render/project/src/dist/index.js:193:21)
+2025-08-22T20:51:30.791201336Z     at async file:///opt/render/project/src/dist/index.js:509:21 {
+2025-08-22T20:51:30.791216187Z   errno: -3008,
+2025-08-22T20:51:30.791218767Z   code: 'ENOTFOUND',
+2025-08-22T20:51:30.791220847Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:30.791222517Z   hostname: 'base'
+2025-08-22T20:51:30.791224217Z }
+2025-08-22T20:51:30.791655498Z 8:51:30 PM [express] GET /api/bets/stats 500 in 426ms :: {"message":"Failed to fetch bet stats"}
+2025-08-22T20:51:30.838582594Z Error fetching available years: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:30.838594255Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:30.838597935Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:30.838601195Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:30.838603475Z     at async file:///opt/render/project/src/dist/index.js:458:21 {
+2025-08-22T20:51:30.838606005Z   errno: -3008,
+2025-08-22T20:51:30.838608935Z   code: 'ENOTFOUND',
+2025-08-22T20:51:30.838612425Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:30.838614975Z   hostname: 'base'
+2025-08-22T20:51:30.838617395Z }
+2025-08-22T20:51:30.838865852Z 8:51:30 PM [express] GET /api/bets/years 500 in 460ms :: {"error":"Internal server error"}
+2025-08-22T20:51:35.351462825Z Error fetching available months: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:35.351492006Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:35.351495306Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:35.351498586Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:35.351501076Z     at async file:///opt/render/project/src/dist/index.js:441:21 {
+2025-08-22T20:51:35.351502356Z 8:51:35 PM [express] GET /api/bets/months 500 in 513ms :: {"error":"Internal server error"}
+2025-08-22T20:51:35.351503386Z   errno: -3008,
+2025-08-22T20:51:35.351510756Z   code: 'ENOTFOUND',
+2025-08-22T20:51:35.351528037Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:35.351531237Z   hostname: 'base'
+2025-08-22T20:51:35.351533877Z }
+2025-08-22T20:51:35.360317797Z Error fetching bet stats: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:35.360341247Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:35.360344747Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:35.360347747Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:35.360350207Z     at async DatabaseStorage.getBetStats (file:///opt/render/project/src/dist/index.js:193:21)
+2025-08-22T20:51:35.360352507Z     at async file:///opt/render/project/src/dist/index.js:509:21 {
+2025-08-22T20:51:35.360354777Z   errno: -3008,
+2025-08-22T20:51:35.360357698Z   code: 'ENOTFOUND',
+2025-08-22T20:51:35.360360818Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:35.360363108Z   hostname: 'base'
+2025-08-22T20:51:35.360365338Z }
+2025-08-22T20:51:35.36084494Z 8:51:35 PM [express] GET /api/bets/stats 500 in 508ms :: {"message":"Failed to fetch bet stats"}
+2025-08-22T20:51:35.377735212Z Error fetching bet stats: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:35.377756042Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:35.377759462Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:35.377762172Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:35.377764062Z     at async DatabaseStorage.getBetStats (file:///opt/render/project/src/dist/index.js:193:21)
+2025-08-22T20:51:35.377778323Z     at async file:///opt/render/project/src/dist/index.js:509:21 {
+2025-08-22T20:51:35.377780183Z   errno: -3008,
+2025-08-22T20:51:35.377782513Z   code: 'ENOTFOUND',
+2025-08-22T20:51:35.377784723Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:35.377786483Z   hostname: 'base'
+2025-08-22T20:51:35.377788173Z }
+2025-08-22T20:51:35.37844771Z 8:51:35 PM [express] GET /api/bets/stats 500 in 440ms :: {"message":"Failed to fetch bet stats"}
+2025-08-22T20:51:35.440557403Z Error fetching available years: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:35.440582454Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:35.440586943Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:35.440590444Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:35.440593154Z     at async file:///opt/render/project/src/dist/index.js:458:21 {
+2025-08-22T20:51:35.440595454Z   errno: -3008,
+2025-08-22T20:51:35.440598554Z   code: 'ENOTFOUND',
+2025-08-22T20:51:35.440602264Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:35.440605034Z   hostname: 'base'
+2025-08-22T20:51:35.440607774Z }
+2025-08-22T20:51:35.441143648Z 8:51:35 PM [express] GET /api/bets/years 500 in 582ms :: {"error":"Internal server error"}
+2025-08-22T20:51:35.441415405Z Error fetching bets: Error: getaddrinfo ENOTFOUND base
+2025-08-22T20:51:35.441420956Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T20:51:35.441424085Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T20:51:35.441426836Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T20:51:35.441428976Z     at async file:///opt/render/project/src/dist/index.js:431:21 {
+2025-08-22T20:51:35.441431356Z   errno: -3008,
+2025-08-22T20:51:35.441433916Z   code: 'ENOTFOUND',
+2025-08-22T20:51:35.441436966Z   syscall: 'getaddrinfo',
+2025-08-22T20:51:35.441438966Z   hostname: 'base'
+2025-08-22T20:51:35.441441006Z }
+2025-08-22T20:51:35.441893118Z 8:51:35 PM [express] GET /api/bets 500 in 501ms :: {"error":"Internal server error"}

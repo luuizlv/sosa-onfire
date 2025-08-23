@@ -42,7 +42,7 @@ export default function AddBetForm() {
     mutationFn: async (data: BetFormData) => {
       return apiRequest('POST', '/api/bets', {
         stake: data.stake,
-        payout: data.payout,
+        payout: data.payout || "0", // Se payout estiver vazio, enviar "0"
         betType: data.betType,
         house: data.house || null,
         description: data.description || null,
@@ -212,7 +212,7 @@ export default function AddBetForm() {
             <Label className="text-sm mb-3 block text-amber-200 font-medium">
               Tipo de Aposta * <span className="text-xs text-amber-400 ml-2">Clique para selecionar rapidamente</span>
             </Label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-2">
               {Object.entries(BET_TYPES).map(([key, type]) => (
                 <Button
                   key={key}
@@ -220,7 +220,7 @@ export default function AddBetForm() {
                   variant={formData.betType === key ? "default" : "outline"}
                   size="sm"
                   onClick={() => setFormData(prev => ({ ...prev, betType: key as BetTypeKey }))}
-                  className={`h-11 text-xs font-medium transition-all duration-200 ${
+                  className={`h-11 text-xs font-medium transition-all duration-200 whitespace-nowrap text-center ${
                     formData.betType === key
                       ? 'bg-amber-500/20 border-amber-500/60 text-amber-400 shadow-lg shadow-amber-500/25 transform scale-105'
                       : 'border-zinc-700/50 bg-zinc-800/50 text-zinc-400 hover:text-amber-400 hover:border-amber-500/30 hover:bg-amber-500/10 hover:scale-102'

@@ -1,0 +1,75 @@
+2025-08-22T19:54:07.070870084Z }
+2025-08-22T19:54:07.071320736Z 7:54:07 PM [express] GET /api/bets/stats 500 in 1278ms :: {"message":"Failed to fetch bet stats"}
+2025-08-22T19:54:07.08631413Z Error fetching bets: error: column "user_id" does not exist
+2025-08-22T19:54:07.08632472Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T19:54:07.08632786Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T19:54:07.08633001Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T19:54:07.08633506Z     at async file:///opt/render/project/src/dist/index.js:430:21 {
+2025-08-22T19:54:07.0863369Z   length: 165,
+2025-08-22T19:54:07.086339231Z   severity: 'ERROR',
+2025-08-22T19:54:07.086340911Z   code: '42703',
+2025-08-22T19:54:07.086342581Z   detail: undefined,
+2025-08-22T19:54:07.086344311Z   hint: 'Perhaps you meant to reference the column "bets.userid".',
+2025-08-22T19:54:07.086346041Z   position: '14',
+2025-08-22T19:54:07.086348411Z   internalPosition: undefined,
+2025-08-22T19:54:07.086350141Z   internalQuery: undefined,
+2025-08-22T19:54:07.086351791Z   where: undefined,
+2025-08-22T19:54:07.086353461Z   schema: undefined,
+2025-08-22T19:54:07.086355241Z   table: undefined,
+2025-08-22T19:54:07.086356901Z   column: undefined,
+2025-08-22T19:54:07.086358521Z   dataType: undefined,
+2025-08-22T19:54:07.086360211Z   constraint: undefined,
+2025-08-22T19:54:07.086361851Z   file: 'parse_relation.c',
+2025-08-22T19:54:07.086363521Z   line: '3723',
+2025-08-22T19:54:07.086375312Z   routine: 'errorMissingColumn'
+2025-08-22T19:54:07.086377101Z }
+2025-08-22T19:54:07.086832834Z 7:54:07 PM [express] GET /api/bets 500 in 1291ms :: {"error":"Internal server error"}
+2025-08-22T19:54:07.137821164Z Error fetching available years: error: column "user_id" does not exist
+2025-08-22T19:54:07.137839145Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T19:54:07.137842415Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T19:54:07.137845335Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T19:54:07.137847565Z     at async file:///opt/render/project/src/dist/index.js:457:21 {
+2025-08-22T19:54:07.137849715Z   length: 165,
+2025-08-22T19:54:07.137852825Z   severity: 'ERROR',
+2025-08-22T19:54:07.137855015Z   code: '42703',
+2025-08-22T19:54:07.137857185Z   detail: undefined,
+2025-08-22T19:54:07.137859645Z   hint: 'Perhaps you meant to reference the column "bets.userid".',
+2025-08-22T19:54:07.137861855Z   position: '14',
+2025-08-22T19:54:07.137864435Z   internalPosition: undefined,
+2025-08-22T19:54:07.137866575Z   internalQuery: undefined,
+2025-08-22T19:54:07.137868705Z   where: undefined,
+2025-08-22T19:54:07.137870746Z   schema: undefined,
+2025-08-22T19:54:07.137872795Z   table: undefined,
+2025-08-22T19:54:07.137874835Z   column: undefined,
+2025-08-22T19:54:07.137876866Z   dataType: undefined,
+2025-08-22T19:54:07.137878956Z   constraint: undefined,
+2025-08-22T19:54:07.137880996Z   file: 'parse_relation.c',
+2025-08-22T19:54:07.137883076Z   line: '3723',
+2025-08-22T19:54:07.137885196Z   routine: 'errorMissingColumn'
+2025-08-22T19:54:07.137887286Z }
+2025-08-22T19:54:07.138275167Z 7:54:07 PM [express] GET /api/bets/years 500 in 1361ms :: {"error":"Internal server error"}
+2025-08-22T19:54:28.314670598Z Error creating bet: error: column "user_id" of relation "bets" does not exist
+2025-08-22T19:54:28.314701939Z     at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+2025-08-22T19:54:28.314707089Z     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-22T19:54:28.314711409Z     at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+2025-08-22T19:54:28.314715149Z     at async DatabaseStorage.createBet (file:///opt/render/project/src/dist/index.js:150:23)
+2025-08-22T19:54:28.314718649Z     at async file:///opt/render/project/src/dist/index.js:528:22 {
+2025-08-22T19:54:28.314722179Z   length: 124,
+2025-08-22T19:54:28.314726589Z   severity: 'ERROR',
+2025-08-22T19:54:28.314730069Z   code: '42703',
+2025-08-22T19:54:28.31473359Z   detail: undefined,
+2025-08-22T19:54:28.31473717Z   hint: undefined,
+2025-08-22T19:54:28.31474061Z   position: '27',
+2025-08-22T19:54:28.3147446Z   internalPosition: undefined,
+2025-08-22T19:54:28.31474807Z   internalQuery: undefined,
+2025-08-22T19:54:28.31475173Z   where: undefined,
+2025-08-22T19:54:28.31475527Z   schema: undefined,
+2025-08-22T19:54:28.31475872Z   table: undefined,
+2025-08-22T19:54:28.314762581Z   column: undefined,
+2025-08-22T19:54:28.314766101Z   dataType: undefined,
+2025-08-22T19:54:28.314769581Z   constraint: undefined,
+2025-08-22T19:54:28.314773031Z   file: 'parse_target.c',
+2025-08-22T19:54:28.314776491Z   line: '1065',
+2025-08-22T19:54:28.314779951Z   routine: 'checkInsertTargets'
+2025-08-22T19:54:28.314783431Z }
+2025-08-22T19:54:28.315278415Z 7:54:28 PM [express] POST /api/bets 500 in 1335ms :: {"message":"Failed to create bet"}

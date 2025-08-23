@@ -67,7 +67,7 @@ export const insertBetSchema = createInsertSchema(bets).omit({
   updatedAt: true,
 }).extend({
   stake: z.string().min(1, "Valor da aposta é obrigatório"),
-  payout: z.string().min(1, "Valor do retorno é obrigatório"),
+  payout: z.string().optional().default("0"),
   betType: z.enum(['surebet', 'giros', 'superodd', 'dnc', 'gastos', 'bingos', 'extracao', 'vicio']),
   placedAt: z.string().min(1, "Data da aposta é obrigatória"),
 });

@@ -10,6 +10,9 @@ export function useAuth() {
     queryKey: ["/api/auth/user"],
     retry: false,
     enabled: !!token,
+    staleTime: 1 * 60 * 1000, // Data becomes stale after 1 minute
+    refetchInterval: 2 * 60 * 1000, // Refetch every 2 minutes to keep profile fresh
+    refetchOnWindowFocus: true, // Refetch when window regains focus
   });
 
   // If there's an auth error, clear localStorage
@@ -26,7 +29,12 @@ export function useAuth() {
     window.location.href = "/login";
   };
 
-  // Use stored user if available while loading, otherwise use fetched user
+  // Update localStorage with fresh user data when available
+  if (user && JSON.stringify(user) !== storedUser) {
+    localStorage.setItem('supabase_user', JSON.stringify(user));
+  }
+
+  // Use fetched user if available, otherwise use stored user
   const currentUser = user || (storedUser ? JSON.parse(storedUser) : null);
 
   return {

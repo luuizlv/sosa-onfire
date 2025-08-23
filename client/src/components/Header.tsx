@@ -23,12 +23,8 @@ export default function Header({ onToggleSidebar }: HeaderProps) {
             <Menu className="h-5 w-5" />
           </Button>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg shadow-wine-light/20 ring-2 ring-wine-light/30">
-              <img 
-                src="https://cdn.discordapp.com/attachments/1191765556534190242/1408306889640640523/ChatGPT_Image_22_de_ago._de_2025_01_28_18.png?ex=68a9437f&is=68a7f1ff&hm=fea155a28cd4b56e6ad4d195a77deac342306c4c29120bf9938f3659433ae8c4" 
-                alt="SOSA Logo" 
-                className="w-full h-full object-cover"
-              />
+            <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg shadow-wine-light/20 ring-2 ring-wine-light/30 bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center">
+              <span className="text-lg font-bold text-black">S</span>
             </div>
             <div className="flex flex-col">
               <div className="text-xl font-bold tracking-tight text-amber-400">
@@ -47,7 +43,10 @@ export default function Header({ onToggleSidebar }: HeaderProps) {
                   src={user.profileImageUrl} 
                   alt="Foto do perfil" 
                   className="w-full h-full object-cover"
-                  key={`${user.profileImageUrl}-${Date.now()}`}
+                  onError={(e) => {
+                    // If image fails to load, hide it and show default icon
+                    e.currentTarget.style.display = 'none';
+                  }}
                 />
               ) : (
                 <User className="h-4 w-4 text-black" />

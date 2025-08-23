@@ -1,0 +1,47 @@
+8:36:19 PM [express] POST /api/auth/register 200 in 1342ms :: {"message":"Usuário criado com sucesso…
+8:36:20 PM [express] GET /api/auth/user 200 in 550ms :: {"id":"69387b86-bded-497c-b69d-d386aef9a95a"…
+8:36:21 PM [express] GET /api/bets 200 in 277ms :: []
+8:36:21 PM [express] GET /api/bets/stats 200 in 639ms :: {"totalStake":"0","totalPayout":"0","totalP…
+8:36:21 PM [express] GET /api/bets/months 200 in 961ms :: []
+8:36:21 PM [express] GET /api/bets/years 200 in 970ms :: []
+8:36:22 PM [express] GET /api/bets/stats 200 in 1396ms :: {"totalStake":"0","totalPayout":"0","total…
+Error creating bet: error: invalid input value for enum bet_type: "vicio"
+    at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+    at async DatabaseStorage.createBet (file:///opt/render/project/src/dist/index.js:151:23)
+    at async file:///opt/render/project/src/dist/index.js:529:22 {
+  length: 133,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $4 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'enum.c',
+  line: '129',
+  routine: 'enum_in'
+}
+8:37:14 PM [express] POST /api/bets 500 in 1323ms :: {"message":"Failed to create bet"}
+Error creating bet: error: invalid input value for enum bet_type: "vicio"
+8:37:16 PM [express] POST /api/bets 500 in 1215ms :: {"message":"Failed to create bet"}
+    at /opt/render/project/src/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///opt/render/project/src/node_modules/drizzle-orm/node-postgres/session.js:83:22
+    at async DatabaseStorage.createBet (file:///opt/render/project/src/dist/index.js:151:23)
+    at async file:///opt/render/project/src/dist/index.js:529:22 {
+  length: 133,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: u

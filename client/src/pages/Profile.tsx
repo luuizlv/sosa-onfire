@@ -53,6 +53,14 @@ export default function Profile() {
       queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
       queryClient.refetchQueries({ queryKey: ["/api/auth/user"] });
       
+      // Update localStorage with new user data to persist across sessions
+      const storedUser = localStorage.getItem('supabase_user');
+      if (storedUser) {
+        const userData = JSON.parse(storedUser);
+        userData.profileImageUrl = data.imageUrl;
+        localStorage.setItem('supabase_user', JSON.stringify(userData));
+      }
+      
       // Update local state with the Supabase URL
       setProfilePhoto(data.imageUrl);
       

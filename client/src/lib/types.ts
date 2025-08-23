@@ -46,7 +46,7 @@ export const BET_TYPES = {
   dnc: 'DNC',
   gastos: 'Gastos',
   bingos: 'Bingos',
-  extracao: 'Extração de FB',
+  extracao: 'Extração FB',
   vicio: 'Vício',
 } as const;
 

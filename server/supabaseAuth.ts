@@ -168,22 +168,25 @@ export function setupSupabaseAuth(app: Express) {
       try {
         dbUser = await storage.getUser(user.id);
         if (!dbUser) {
+          // Only create new user if doesn't exist, don't override existing profile image
           dbUser = await storage.upsertUser({
             id: user.id,
             email: user.email!,
             firstName: user.user_metadata?.firstName || user.email!.split('@')[0],
             lastName: user.user_metadata?.lastName || '',
-            profileImageUrl: user.user_metadata?.avatar_url || null,
+            profileImageUrl: null, // Start with null, user can upload later
           });
         }
+        // Always use data from database as it's the source of truth
       } catch (dbError) {
         console.error('Error getting user from database:', dbError);
+        // Fallback only if database is completely unavailable
         dbUser = {
           id: user.id,
           email: user.email,
           firstName: user.user_metadata?.firstName || user.email!.split('@')[0],
           lastName: user.user_metadata?.lastName || '',
-          profileImageUrl: user.user_metadata?.avatar_url || null,
+          profileImageUrl: null, // Don't use potentially expired Supabase metadata
         };
       }
 

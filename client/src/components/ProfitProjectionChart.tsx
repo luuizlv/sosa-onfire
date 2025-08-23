@@ -18,23 +18,36 @@ export default function ProfitProjectionChart({ filters }: ProfitProjectionChart
   
   const { data: stats, isLoading } = useQuery<BetStats>({
     queryKey: ["/api/bets/stats", filters],
+    refetchInterval: 5 * 60 * 1000, // Refetch every 5 minutes for real-time updates
+    staleTime: 2 * 60 * 1000, // Data becomes stale after 2 minutes
   });
 
   // Get historical data for projections (last 30 days)
   const { data: historicalStats } = useQuery<BetStats>({
     queryKey: ["/api/bets/stats", { ...filters, period: 'monthly' }],
+    refetchInterval: 5 * 60 * 1000, // Refetch every 5 minutes to ensure fresh data
+    staleTime: 2 * 60 * 1000, // Data becomes stale after 2 minutes
   });
 
-  // Calculate daily average profit from historical data
+  // Calculate daily average profit from historical data with improved logic
   const calculateDailyAverage = () => {
+    // Use historical data for more accurate projections
     const dataSource = historicalStats || stats;
     if (!dataSource?.profitByDate || dataSource.profitByDate.length === 0) {
       return 0;
     }
 
-    const totalProfit = dataSource.profitByDate.reduce((sum, day) => sum + day.profit, 0);
-    const totalDays = dataSource.profitByDate.length;
-    return totalProfit / totalDays;
+    // Filter out days with zero activity to avoid skewing the average
+    const activeDays = dataSource.profitByDate.filter(day => 
+      day.stake > 0 || Math.abs(day.profit) > 0
+    );
+    
+    if (activeDays.length === 0) {
+      return 0;
+    }
+
+    const totalProfit = activeDays.reduce((sum, day) => sum + day.profit, 0);
+    return totalProfit / activeDays.length;
   };
 
   const dailyAverage = calculateDailyAverage();

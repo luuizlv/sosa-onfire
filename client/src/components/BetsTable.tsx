@@ -211,7 +211,7 @@ function BetsTable({ filters }: BetsTableProps) {
     try {
       const nowInBrazil = new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' });
       const now = new Date(nowInBrazil);
-      const last48Hours = new Date(now.getTime() - (48 * 60 * 60 * 1000)); // 48 horas atrás
+      const last24Hours = new Date(now.getTime() - (24 * 60 * 60 * 1000)); // 24 horas atrás
       
       const todaysBets: Bet[] = [];
       const olderBets: Bet[] = [];
@@ -225,7 +225,7 @@ function BetsTable({ filters }: BetsTableProps) {
             return;
           }
           
-          if (betDate >= last48Hours) {
+          if (betDate >= last24Hours) {
             todaysBets.push(bet);
           } else {
             olderBets.push(bet);
@@ -620,13 +620,9 @@ function BetsTable({ filters }: BetsTableProps) {
                 Apostas Recentes
               </h3>
               <p className="text-sm text-oled-secondary">
-                {todaysBets.length > 0 ? 'nas últimas 48h' : 'Nenhuma aposta nas últimas 48h'}
+                {todaysBets.length > 0 ? 'nas últimas 24h' : 'Nenhuma aposta nas últimas 24h'}
               </p>
             </div>
-            <Button variant="ghost" className="text-sm font-medium text-gold hover:text-gold-light">
-              <Eye className="h-4 w-4 mr-2" />
-              Ver todas
-            </Button>
           </div>
         </div>
 
@@ -635,7 +631,7 @@ function BetsTable({ filters }: BetsTableProps) {
             <div className="px-6 py-4 border-b border-oled flex justify-between items-center bg-gradient-to-r from-gold/10 to-wine/10 border-wine/20">
               <div>
                 <h4 className="font-semibold text-gold">
-                  Últimas 48 Horas
+                  Últimas 24 Horas
                 </h4>
                 <p className="text-sm text-oled-secondary">
                   {todaysBets.length} apostas recentes
@@ -684,7 +680,7 @@ function BetsTable({ filters }: BetsTableProps) {
           </div>
         ) : (
           <div className="p-6 text-center text-oled-secondary">
-            Nenhuma aposta registrada nas últimas 48 horas
+            Nenhuma aposta registrada nas últimas 24 horas
           </div>
         )}
       </Card>
