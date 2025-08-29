@@ -36,15 +36,18 @@ export default function Sidebar({ open, onClose, filters, onFiltersChange }: Sid
   };
 
 
-  const clearFilters = () => {
-    const clearedFilters = { period: 'daily' as const };
-    setLocalFilters(clearedFilters);
-    onFiltersChange(clearedFilters);
-  };
   
-  // Clear month/year filter when period changes
+  // Clear month/year filter when period changes and auto-select current month for monthly
   const handlePeriodChange = (period: string) => {
-    const newFilters = { ...localFilters, period: period as any, month: undefined, year: undefined };
+    let newFilters: BetFilters = { ...localFilters, period: period as any, month: undefined, year: undefined };
+    
+    // Auto-select current month when switching to monthly view
+    if (period === 'monthly') {
+      const now = new Date();
+      const currentMonth = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}`;
+      newFilters.month = currentMonth;
+    }
+    
     setLocalFilters(newFilters);
     onFiltersChange(newFilters);
   };
@@ -154,15 +157,6 @@ export default function Sidebar({ open, onClose, filters, onFiltersChange }: Sid
 
 
 
-          <div className="mt-6">
-            <Button
-              variant="outline"
-              onClick={clearFilters}
-              className="w-full rounded-lg border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-yellow-400 hover:bg-zinc-800"
-            >
-              Limpar Filtros
-            </Button>
-          </div>
         </div>
       </div>
     </aside>

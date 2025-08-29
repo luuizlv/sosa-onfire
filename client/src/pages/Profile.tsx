@@ -24,19 +24,12 @@ export default function Profile() {
   
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
 
-  // Load profile photo from user data
+  // Load profile photo from user data - simplified to avoid timing issues
   useEffect(() => {
     if (user?.profileImageUrl) {
       setProfilePhoto(user.profileImageUrl);
     }
-  }, [user]);
-
-  // Reset profile photo when user data is loaded
-  useEffect(() => {
-    if (user && !profilePhoto && user.profileImageUrl) {
-      setProfilePhoto(user.profileImageUrl);
-    }
-  }, [user, profilePhoto]);
+  }, [user?.profileImageUrl]);
   const [isChangingPassword, setIsChangingPassword] = useState(false);
 
   // Mutation to upload profile photo to Supabase Storage

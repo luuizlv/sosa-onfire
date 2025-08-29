@@ -88,20 +88,10 @@ export default function Login() {
       
       <Card className="w-full max-w-md bg-zinc-950/90 backdrop-blur-xl border-amber-500/30 shadow-2xl shadow-amber-500/20 relative">
         <CardHeader className="space-y-6 text-center">
-          <div className="mx-auto w-24 h-24 rounded-full overflow-hidden shadow-2xl shadow-wine-light/30 ring-4 ring-wine-light/20">
-            <img 
-              src="https://cdn.discordapp.com/attachments/1191765556534190242/1408306889640640523/ChatGPT_Image_22_de_ago._de_2025_01_28_18.png?ex=68a9437f&is=68a7f1ff&hm=fea155a28cd4b56e6ad4d195a77deac342306c4c29120bf9938f3659433ae8c4" 
-              alt="SOSA Logo" 
-              className="w-full h-full object-cover"
-            />
-          </div>
           <div className="space-y-2">
             <CardTitle className="text-4xl font-bold text-amber-400">
               SOSA
             </CardTitle>
-            <CardDescription className="text-amber-200/70 text-lg font-medium">
-              🎰 Sua plataforma de controle de apostas 🎲
-            </CardDescription>
           </div>
         </CardHeader>
         

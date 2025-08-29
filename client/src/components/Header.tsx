@@ -23,13 +23,8 @@ export default function Header({ onToggleSidebar }: HeaderProps) {
             <Menu className="h-5 w-5" />
           </Button>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg shadow-wine-light/20 ring-2 ring-wine-light/30 bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center">
-              <span className="text-lg font-bold text-black">S</span>
-            </div>
-            <div className="flex flex-col">
-              <div className="text-xl font-bold tracking-tight text-amber-400">
-                SOSA
-              </div>
+            <div className="text-xl font-bold tracking-tight text-amber-400">
+              SOSA
             </div>
           </div>
         </div>
@@ -39,15 +34,25 @@ export default function Header({ onToggleSidebar }: HeaderProps) {
             <div className="hidden sm:flex items-center gap-3 bg-oled-gray/50 rounded-xl px-3 py-2 border border-wine-light/20 hover:border-wine-light/40 transition-colors cursor-pointer">
             <div className="w-8 h-8 bg-gradient-to-br from-gold to-gold-light rounded-full flex items-center justify-center shadow-md overflow-hidden">
               {user?.profileImageUrl ? (
-                <img 
-                  src={user.profileImageUrl} 
-                  alt="Foto do perfil" 
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    // If image fails to load, hide it and show default icon
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
+                <>
+                  <img 
+                    src={user.profileImageUrl} 
+                    alt="Foto do perfil" 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      // If image fails to load, hide it and show default icon
+                      e.currentTarget.style.display = 'none';
+                      const parent = e.currentTarget.parentElement;
+                      if (parent) {
+                        const userIcon = parent.querySelector('.fallback-icon');
+                        if (userIcon) {
+                          (userIcon as HTMLElement).style.display = 'block';
+                        }
+                      }
+                    }}
+                  />
+                  <User className="h-4 w-4 text-black fallback-icon" style={{ display: 'none' }} />
+                </>
               ) : (
                 <User className="h-4 w-4 text-black" />
               )}

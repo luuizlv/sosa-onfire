@@ -40,14 +40,14 @@ export interface BetFilters {
 }
 
 export const BET_TYPES = {
-  surebet: 'Surebet',
-  giros: 'Giros grátis',
-  superodd: 'Superodd',
-  dnc: 'DNC',
-  gastos: 'Gastos',
-  bingos: 'Bingos',
-  extracao: 'Extração FB',
-  vicio: 'Vício',
+  surebet: '🎯 Surebet',
+  giros: '🎰 Giros grátis',
+  superodd: '🚀 Superodd',
+  dnc: '💪 DNC',
+  gastos: '💸 Gastos',
+  bingos: '🎲 Bingos',
+  extracao: '🎁 Extração FB',
+  vicio: '⚠️ Vício',
 } as const;
 
 export type BetTypeKey = keyof typeof BET_TYPES;

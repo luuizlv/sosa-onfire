@@ -20,7 +20,6 @@ interface BetFormData {
   house: string;
   description: string;
   placedAt: string;
-  status?: 'pending' | 'completed' | 'lost';
 }
 
 export default function AddBetForm() {
@@ -31,7 +30,6 @@ export default function AddBetForm() {
     house: '',
     description: '',
     placedAt: getTodayInBrazil(),
-    status: 'pending',
   });
   
   const { toast } = useToast();
@@ -47,7 +45,7 @@ export default function AddBetForm() {
         house: data.house || null,
         description: data.description || null,
         placedAt: data.placedAt,
-        status: data.status || 'pending',
+        status: 'pending',
       });
     },
     onSuccess: () => {
@@ -68,7 +66,6 @@ export default function AddBetForm() {
         house: '',
         description: '',
         placedAt: getTodayInBrazil(),
-        status: 'pending',
       });
       // Invalidate all bet-related queries to refresh data
       queryClient.invalidateQueries({ predicate: (query) => query.queryKey[0] === '/api/bets' });
@@ -118,7 +115,6 @@ export default function AddBetForm() {
       house: '',
       description: '',
       placedAt: getTodayInBrazil(),
-      status: 'pending',
     });
   };
 
@@ -126,18 +122,7 @@ export default function AddBetForm() {
     const stake = parseFloat(formData.stake || '0');
     const payout = parseFloat(formData.payout || '0');
     
-    if (formData.status === 'lost') {
-      return -stake;
-    }
-    
-    if (formData.status === 'completed') {
-      if (!formData.payout || formData.payout === '') {
-        return -stake; // Show as loss if payout not specified but marked as completed
-      }
-      return payout - stake;
-    }
-    
-    // For pending status, show estimated profit/loss
+    // Show estimated profit/loss for new bets
     if (!formData.payout || formData.payout === '') {
       return -stake; // Show potential loss
     }
@@ -212,7 +197,7 @@ export default function AddBetForm() {
             <Label className="text-sm mb-3 block text-amber-200 font-medium">
               Tipo de Aposta * <span className="text-xs text-amber-400 ml-2">Clique para selecionar rapidamente</span>
             </Label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
               {Object.entries(BET_TYPES).map(([key, type]) => (
                 <Button
                   key={key}
@@ -220,13 +205,15 @@ export default function AddBetForm() {
                   variant={formData.betType === key ? "default" : "outline"}
                   size="sm"
                   onClick={() => setFormData(prev => ({ ...prev, betType: key as BetTypeKey }))}
-                  className={`h-11 text-xs font-medium transition-all duration-200 whitespace-nowrap text-center ${
+                  className={`h-14 text-xs font-medium transition-all duration-200 whitespace-nowrap text-center flex flex-col items-center gap-1 p-2 ${
                     formData.betType === key
                       ? 'bg-amber-500/20 border-amber-500/60 text-amber-400 shadow-lg shadow-amber-500/25 transform scale-105'
-                      : 'border-zinc-700/50 bg-zinc-800/50 text-zinc-400 hover:text-amber-400 hover:border-amber-500/30 hover:bg-amber-500/10 hover:scale-102'
+                      : 'border-zinc-700/50 bg-zinc-800/50 text-zinc-400 hover:text-amber-400 hover:border-amber-500/30 hover:bg-amber-500/10 hover:scale-105'
                   }`}
+                  data-testid={`button-bet-type-${key}`}
                 >
-                  {type}
+                  <span className="text-base">{type.split(' ')[0]}</span>
+                  <span className="text-[10px] opacity-90">{type.split(' ').slice(1).join(' ')}</span>
                 </Button>
               ))}
             </div>
@@ -349,58 +336,11 @@ export default function AddBetForm() {
             />
           </div>
 
-          {/* Status */}
-          <div>
-            <Label className="text-sm mb-2 block text-amber-200 font-medium">
-              Status da Aposta
-            </Label>
-            <div className="grid grid-cols-3 gap-2">
-              <Button
-                type="button"
-                variant={formData.status === 'pending' ? "default" : "outline"}
-                size="sm"
-                onClick={() => setFormData(prev => ({ ...prev, status: 'pending' }))}
-                className={`h-11 text-xs font-medium transition-all duration-200 ${
-                  formData.status === 'pending'
-                    ? 'bg-yellow-500/20 border-yellow-500/60 text-yellow-400 shadow-lg shadow-yellow-500/25'
-                    : 'border-zinc-700/50 bg-zinc-800/50 text-zinc-400 hover:text-yellow-400 hover:border-yellow-500/30 hover:bg-yellow-500/10'
-                }`}
-              >
-                🕐 Pendente
-              </Button>
-              <Button
-                type="button"
-                variant={formData.status === 'completed' ? "default" : "outline"}
-                size="sm"
-                onClick={() => setFormData(prev => ({ ...prev, status: 'completed' }))}
-                className={`h-11 text-xs font-medium transition-all duration-200 ${
-                  formData.status === 'completed'
-                    ? 'bg-green-500/20 border-green-500/60 text-green-400 shadow-lg shadow-green-500/25'
-                    : 'border-zinc-700/50 bg-zinc-800/50 text-zinc-400 hover:text-green-400 hover:border-green-500/30 hover:bg-green-500/10'
-                }`}
-              >
-                ✅ Ganha
-              </Button>
-              <Button
-                type="button"
-                variant={formData.status === 'lost' ? "default" : "outline"}
-                size="sm"
-                onClick={() => setFormData(prev => ({ ...prev, status: 'lost' }))}
-                className={`h-11 text-xs font-medium transition-all duration-200 ${
-                  formData.status === 'lost'
-                    ? 'bg-red-500/20 border-red-500/60 text-red-400 shadow-lg shadow-red-500/25'
-                    : 'border-zinc-700/50 bg-zinc-800/50 text-zinc-400 hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10'
-                }`}
-              >
-                ❌ Perdida
-              </Button>
-            </div>
-          </div>
 
           {/* Profit Display */}
           <div>
             <Label className="text-sm mb-2 block text-amber-200 font-medium">
-              {formData.status === 'pending' ? 'Lucro/Prejuízo Estimado' : formData.status === 'completed' ? 'Lucro Obtido' : 'Prejuízo'}
+              Lucro/Prejuízo Estimado
             </Label>
             <div className={`px-4 py-4 rounded-xl border-2 font-bold text-center bg-zinc-900/30 transition-all duration-300 ${
               profit >= 0 
@@ -409,11 +349,9 @@ export default function AddBetForm() {
             }`}>
               <div className="flex items-center justify-center gap-2">
                 <span className="text-lg">{formatCurrencyWithSign(profit)}</span>
-                {formData.status === 'pending' && (
-                  <span className="text-xs text-zinc-400 ml-2">
-                    (estimativa)
-                  </span>
-                )}
+                <span className="text-xs text-zinc-400 ml-2">
+                  (estimativa)
+                </span>
               </div>
             </div>
           </div>

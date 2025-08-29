@@ -8,7 +8,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import { formatCurrency, formatCurrencyWithSign, formatDate } from "@/lib/formatters";
 import { BET_TYPES, type Bet, type BetFilters, type BetStatus } from "@/lib/types";
-import { Trash2, Eye, Clock, CheckCircle, XCircle, Calendar } from "lucide-react";
+import { Trash2, Eye, Clock, CheckCircle, XCircle, Calendar, Edit } from "lucide-react";
 import { memo, useMemo, useCallback } from "react";
 
 interface BetsTableProps {
@@ -264,7 +264,7 @@ function BetsTable({ filters }: BetsTableProps) {
         <thead className="bg-oled-gray/50">
           <tr>
             <th className="text-left px-6 py-3 text-xs font-medium text-zinc-500 uppercase">
-              Horário
+              Data
             </th>
             <th className="text-left px-6 py-3 text-xs font-medium text-zinc-500 uppercase">
               Tipo
@@ -348,14 +348,31 @@ function BetsTable({ filters }: BetsTableProps) {
                   {profit !== 0 ? formatCurrencyWithSign(profit) : '-'}
                 </td>
                 <td className="px-6 py-4 text-center">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleDelete(bet.id)}
-                    className="h-8 w-8 p-0 text-red-400 hover:text-red-300 hover:bg-red-400/10"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
+                  <div className="flex items-center gap-2 justify-center">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => {
+                        toast({
+                          title: "Funcionalidade em desenvolvimento",
+                          description: "Edição de apostas será implementada em breve!",
+                        });
+                      }}
+                      className="h-8 w-8 p-0 text-blue-400 hover:text-blue-300 hover:bg-blue-400/10"
+                      data-testid="button-edit-bet"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDelete(bet.id)}
+                      className="h-8 w-8 p-0 text-red-400 hover:text-red-300 hover:bg-red-400/10"
+                      data-testid="button-delete-bet"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </td>
               </tr>
             );
@@ -410,7 +427,7 @@ function BetsTable({ filters }: BetsTableProps) {
               ? -stake // Para apostas perdidas: -stake
               : 0; // Para apostas pendentes: 0
             
-            const betDate = formatTimeSafely(bet.placedAt);
+            const betDate = formatDateForDisplay(bet.placedAt);
 
             return (
               <tr key={bet.id} className="hover:bg-white/5 transition-colors">
